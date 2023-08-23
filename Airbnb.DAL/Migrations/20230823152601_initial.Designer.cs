@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Airbnb.DAL.Migrations
 {
     [DbContext(typeof(RentContext))]
-    [Migration("20230823141401_Initial")]
-    partial class Initial
+    [Migration("20230823152601_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,34 +50,37 @@ namespace Airbnb.DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("AmenityId")
+                    b.Property<Guid?>("AmenityId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("PropertyId")
+                    b.Property<Guid?>("PropertyId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("RuleId")
+                    b.Property<Guid?>("RuleId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("URL")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("UserId")
+                    b.Property<Guid?>("UserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AmenityId")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[AmenityId] IS NOT NULL");
 
                     b.HasIndex("PropertyId");
 
                     b.HasIndex("RuleId")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[RuleId] IS NOT NULL");
 
                     b.HasIndex("UserId")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[UserId] IS NOT NULL");
 
                     b.ToTable("Images");
                 });
@@ -268,26 +271,22 @@ namespace Airbnb.DAL.Migrations
                     b.HasOne("Airbnb.DAL.Amenity", "Amenity")
                         .WithOne("Img")
                         .HasForeignKey("Airbnb.DAL.Images", "AmenityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Airbnb.DAL.Property", "Property")
                         .WithMany("Imgs")
                         .HasForeignKey("PropertyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Airbnb.DAL.Rules", "Rule")
                         .WithOne("Img")
                         .HasForeignKey("Airbnb.DAL.Images", "RuleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Airbnb.DAL.User", "User")
                         .WithOne("Img")
                         .HasForeignKey("Airbnb.DAL.Images", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.Navigation("Amenity");
 
@@ -358,7 +357,7 @@ namespace Airbnb.DAL.Migrations
                     b.HasOne("Airbnb.DAL.User", "User")
                         .WithMany("Reservations")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Property");
@@ -377,7 +376,7 @@ namespace Airbnb.DAL.Migrations
                     b.HasOne("Airbnb.DAL.User", "User")
                         .WithMany("Reviews")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Property");

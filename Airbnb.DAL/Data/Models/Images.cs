@@ -14,13 +14,13 @@ public class Images
 
     //Nav Props and FKeys
 
-    public Guid UserId { get ; set; }   
-    public Guid PropertyId { get; set; }
-    public Guid AmenityId { get; set; }
-    public Guid RuleId { get; set; }    
+    public Guid? UserId { get ; set; }   
+    public Guid? PropertyId { get; set; }
+    public Guid? AmenityId { get; set; }
+    public Guid? RuleId { get; set; }    
 
-    public User User { get; set; }
-    public Property Property { get; set; }
-    public Amenity Amenity { get; set; }
-    public Rules Rule { get; set; }
+    public User? User { get; set; }
+    public Property? Property { get; set; }
+    public Amenity? Amenity { get; set; }
+    public Rules? Rule { get; set; }
 }
