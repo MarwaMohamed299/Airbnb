@@ -1,4 +1,4 @@
-﻿using Airbnb.DAL.Repos.Images;
+﻿using Airbnb.DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;

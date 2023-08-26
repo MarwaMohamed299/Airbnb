@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Airbnb.DAL;
 
-internal class ReviewRepo:GenericRepo<UserReviewProperty>,IReviewRepo
+public class ReviewRepo:GenericRepo<UserReviewProperty>,IReviewRepo
 {
     private readonly RentContext _rentContext;
 

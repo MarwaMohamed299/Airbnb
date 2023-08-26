@@ -22,7 +22,7 @@ namespace Airbnb.APIs
             builder.Services.AddScoped<IAmenityRepo, AmenityRepo>();
             builder.Services.AddScoped<IImageRepo, ImageRepo>();
             builder.Services.AddScoped<IReservationRepo, ReservationRepo>();
-            builder.Services.AddScoped<IReviewRepo, IReviewRepo>();
+            builder.Services.AddScoped<IReviewRepo, ReviewRepo>();
             builder.Services.AddScoped<IRulesRepo, RulesRepo>();
             var app = builder.Build();
 
