@@ -8,4 +8,5 @@ namespace Airbnb.APIs.Controllers
     public class PropertyController : ControllerBase
     {
     }
+
 }
