@@ -31,11 +31,11 @@ public class RentContext:DbContext
         modelBuilder.Entity<User>().HasMany(P => P.Properties).WithOne(U => U.User).
             HasForeignKey(x => x.UserID).OnDelete(DeleteBehavior.Cascade);
         modelBuilder.Entity<User>().HasMany(P => P.Reservations).WithOne(U => U.User).
-            HasForeignKey(fk => fk.UserId).OnDelete(DeleteBehavior.NoAction);
+            HasForeignKey(fk => fk.UserId).OnDelete(DeleteBehavior.Cascade);
         modelBuilder.Entity<User>().HasMany(R => R.Reviews).WithOne(U => U.User).
-            HasForeignKey(fk => fk.UserId).OnDelete(DeleteBehavior.Restrict);
+            HasForeignKey(fk => fk.UserId).OnDelete(DeleteBehavior.NoAction);
         modelBuilder.Entity<User>().HasOne(i => i.Img).WithOne(u => u.User)
-            .HasForeignKey<Images>(a=>a.UserId).OnDelete(DeleteBehavior.NoAction);
+            .HasForeignKey<Images>(a=>a.UserId).OnDelete(DeleteBehavior.Restrict);
 
         //Property
         modelBuilder.Entity<Property>().HasKey(k => k.Id);
