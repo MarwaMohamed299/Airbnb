@@ -12,7 +12,7 @@ namespace Airbnb.BL.Managers.properties
     {
         IEnumerable<PropertyReadDto> GetAll();
         PropertyReadDto? GetById(int id);
-        int Add(PropertyAddDto property);
+        System.Guid Add(PropertyAddDto property);
         bool Update(PropertyUpdateDto property);
         bool Delete(int id);
 

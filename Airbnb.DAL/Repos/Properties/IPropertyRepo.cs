@@ -13,5 +13,6 @@ public interface IPropertyRepo:IGenericRepo<Property>
     void Add(Property property);
     void Update(Property property);
     void Delete(Property property);
-    int SavaChanges();
+    int SaveChanges();
+    Property? GetById(Guid id);
 }

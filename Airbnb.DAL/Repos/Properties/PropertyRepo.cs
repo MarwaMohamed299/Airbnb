@@ -9,6 +9,11 @@ public class PropertyRepo:GenericRepo<Property>, IPropertyRepo
         _rentContext = rentContext;
     }
 
+    public Property? GetById(Guid id)
+    {
+        return _rentContext.Set<Property>().Find(id);
+    }
+
     void IPropertyRepo.Add(Property property)
     {
         _rentContext.Set<Property>().Add(property);
@@ -29,7 +34,7 @@ public class PropertyRepo:GenericRepo<Property>, IPropertyRepo
         return _rentContext.Set<Property>().Find(id);
     }
 
-    int IPropertyRepo.SavaChanges()
+    int IPropertyRepo.SaveChanges()
     {
         return _rentContext.SaveChanges();
     }

@@ -16,7 +16,7 @@ public class Property
     public DateTime CreationDate { get; set; } = DateTime.Now;
     public int NumOfPeople { get; set; }
     public decimal PricePerNight { get; set; }  
-    public string Description { get; set; }
+    public string Description { get; set; } 
     //Nav Props
     public Guid UserID { get; set; }
     public User User { get; set; }
@@ -26,3 +26,4 @@ public class Property
     public ICollection<PropertyRule> PropertyRules{ get; set; } = new HashSet<PropertyRule>();
     public ICollection<Images> Imgs { get; set; }= new HashSet<Images>();
 }
+ 

@@ -18,9 +18,7 @@ namespace Airbnb.BL.Dtos.Properties
         public int NumOfPeople { get; set; }
         public decimal PricePerNight { get; set; }
         public string Description { get; set; } = string.Empty;
-        //Nav Props
-        public Guid UserID { get; set; }
-        public User? User { get; set; } 
+     
         
 }
 }
