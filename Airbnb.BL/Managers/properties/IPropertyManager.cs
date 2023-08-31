@@ -1,4 +1,4 @@
-﻿using Airbnb.APIs.Dtos.Properties;
+﻿
 using Airbnb.BL.Dtos.Properties;
 using System;
 using System.Collections.Generic;

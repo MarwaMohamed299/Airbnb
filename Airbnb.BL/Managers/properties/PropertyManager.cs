@@ -1,6 +1,6 @@
-﻿using Airbnb.APIs.Dtos.Properties;
-using Airbnb.BL.Dtos.Properties;
+﻿using Airbnb.BL.Dtos.Properties;
 using Airbnb.DAL;
+using Property = Airbnb.DAL.Property;
 
 namespace Airbnb.BL.Managers.properties
 {
@@ -99,10 +99,10 @@ namespace Airbnb.BL.Managers.properties
         public bool Delete(int id)
         {
             Property? property = _propertyRepo.GetById(id);
-             if (property == null)
-                {
-                    return false;
-                }
+              if (property == null)
+            {
+                return false;
+            }
             _propertyRepo.Delete(property);
 
             _propertyRepo.SaveChanges();

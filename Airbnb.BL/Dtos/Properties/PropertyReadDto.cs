@@ -1,6 +1,6 @@
 ﻿using Airbnb.DAL;
 
-namespace Airbnb.APIs.Dtos.Properties
+namespace Airbnb
 {
     public class PropertyReadDto
     {
@@ -13,7 +13,7 @@ namespace Airbnb.APIs.Dtos.Properties
         public int NumOfPeople { get; set; }
         public decimal PricePerNight { get; set; }
         public string Description { get; set; }
-      
+    
     }
 }
 
