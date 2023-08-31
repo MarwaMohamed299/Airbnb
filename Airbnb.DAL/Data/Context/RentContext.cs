@@ -7,22 +7,25 @@ using System.Threading.Tasks;
 
 namespace Airbnb.DAL;
 
-public class RentContext:DbContext
+public class RentContext : DbContext
 {
     public DbSet<User> Users => Set<User>();
     public DbSet<Property> Properties => Set<Property>();
     public DbSet<Amenity> Amenities => Set<Amenity>();
     public DbSet<Rules> Rules => Set<Rules>();
     public DbSet<UserReserveProperty> Reservations => Set<UserReserveProperty>();
-    public DbSet<UserReviewProperty>Reviews => Set<UserReviewProperty>();
+    public DbSet<UserReviewProperty> Reviews => Set<UserReviewProperty>();
     public DbSet<PropertyAmenity> PropertyAmenities => Set<PropertyAmenity>();
-    public DbSet<PropertyRule> PropertyRules => Set<PropertyRule>();    
+    public DbSet<PropertyRule> PropertyRules => Set<PropertyRule>();
     public DbSet<Images> Images => Set<Images>();
 
-    public RentContext(DbContextOptions <RentContext> options):base(options)
+    public RentContext(DbContextOptions<RentContext> options) : base(options)
     {
-        
+
+
+
     }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         //User

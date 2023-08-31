@@ -1,4 +1,5 @@
 
+using Airbnb.BL.Managers.properties;
 using Airbnb.DAL;
 using Microsoft.EntityFrameworkCore;
 
@@ -24,6 +25,8 @@ namespace Airbnb.APIs
             builder.Services.AddScoped<IReservationRepo, ReservationRepo>();
             builder.Services.AddScoped<IReviewRepo, ReviewRepo>();
             builder.Services.AddScoped<IRulesRepo, RulesRepo>();
+            builder.Services.AddScoped<IPropertyManager, PropertyManager>();
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
