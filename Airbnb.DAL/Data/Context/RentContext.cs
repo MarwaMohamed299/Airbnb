@@ -22,11 +22,11 @@ public class RentContext : DbContext
     public RentContext(DbContextOptions<RentContext> options) : base(options)
     {
 
-
-
     }
+       
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
+
+protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         //User
         base.OnModelCreating(modelBuilder);
@@ -41,7 +41,7 @@ public class RentContext : DbContext
             .HasForeignKey<Images>(a=>a.UserId).OnDelete(DeleteBehavior.Restrict);
 
         //Property
-        modelBuilder.Entity<Property>().HasKey(k => k.Id);
+        modelBuilder.Entity<Property>().HasKey(k => k.UserID);
         modelBuilder.Entity<Property>().HasMany(r=>r.Reservations).WithOne(p=>p.Property)
             .HasForeignKey(fk=>fk.PropertyId).OnDelete(DeleteBehavior.Cascade);
         modelBuilder.Entity<Property>().HasMany(r => r.Reviews).WithOne(p => p.Property)
@@ -52,6 +52,7 @@ public class RentContext : DbContext
             .HasForeignKey(fk => fk.PropertyId).OnDelete(DeleteBehavior.Cascade);
         modelBuilder.Entity<Property>().HasMany(i => i.Imgs).WithOne(p => p.Property).
             HasForeignKey(fk => fk.PropertyId).OnDelete(DeleteBehavior.Cascade);
+        modelBuilder.Entity<Property>().Property(p => p.PricePerNight).HasColumnType("decimal(18,2)");
 
         //Amenity
         modelBuilder.Entity<Amenity>().HasKey(k=> k.Id);
