@@ -14,6 +14,6 @@ public class UserReviewProperty
     //Nav Props
     public Guid UserId { get; set; }
     public Guid PropertyId { get; set; }
-    public User User { get; set; }
-    public Property Property { get; set; }
+    public User? User { get; set; }
+    public Property? Property { get; set; }
 }

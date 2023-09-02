@@ -12,14 +12,14 @@ public class Property
     public PropType PropType { get; set; }
     public int Country { get; set; }
     public int Governorate { get; set; }
-    public string City { get; set; }
+    public string City { get; set; } = string.Empty;
     public DateTime CreationDate { get; set; } = DateTime.Now;
     public int NumOfPeople { get; set; }
     public decimal PricePerNight { get; set; }  
-    public string Description { get; set; } 
+    public string Description { get; set; } = string.Empty;
     //Nav Props
     public Guid UserID { get; set; }
-    public User User { get; set; }
+    public User? User { get; set; }
     public ICollection<UserReserveProperty> Reservations { get; set; } = new HashSet<UserReserveProperty>();
     public ICollection<UserReviewProperty> Reviews { get; set; } = new HashSet<UserReviewProperty>();
     public ICollection<PropertyAmenity> PropertyAmenities{ get; set; } = new HashSet<PropertyAmenity>();

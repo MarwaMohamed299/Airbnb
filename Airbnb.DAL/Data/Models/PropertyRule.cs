@@ -12,6 +12,6 @@ public class PropertyRule
     public Guid PropertyId { get; set; }
 
     //Nav Props
-    public Rules Rule { get;set; }  
-    public Property Property { get; set; }
+    public Rules? Rule { get;set; }  
+    public Property? Property { get; set; }
 }

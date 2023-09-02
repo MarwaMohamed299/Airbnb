@@ -27,9 +27,9 @@ namespace Airbnb.APIs.Controllers.Property
 
         [HttpGet]
         [Route("{id}")]
-        public ActionResult<PropertyReadDto> GetById(int id)
+        public ActionResult<PropertyReadDto> GetPropertyById(Guid id)
         {
-              PropertyReadDto? property = _propertyManager.GetById(id);
+              PropertyReadDto? property = _propertyManager.GetPropertyById(id);
             if (property is null)
             {
                 return NotFound();
@@ -41,7 +41,7 @@ namespace Airbnb.APIs.Controllers.Property
         public ActionResult Add (PropertyAddDto propertyDto)
         {
             var newId =_propertyManager.Add(propertyDto);
-            return CreatedAtAction(nameof(GetById),
+            return CreatedAtAction(nameof(GetPropertyById),
                 new { id = newId },
                 new GeneralResponse("Property Has Been Added Successfully!"));
 
@@ -60,7 +60,7 @@ namespace Airbnb.APIs.Controllers.Property
         }
         [HttpDelete]
         [Route("{id}")]
-        public ActionResult Delete (int id)
+        public ActionResult Delete (Guid id)
         {
             var isFound = _propertyManager.Delete(id);
             if(!isFound)

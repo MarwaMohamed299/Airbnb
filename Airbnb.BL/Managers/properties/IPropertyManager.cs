@@ -11,11 +11,11 @@ namespace Airbnb.BL.Managers.properties
     public interface IPropertyManager
     {
         IEnumerable<PropertyReadDto> GetAll();
-        PropertyReadDto? GetById(int id);
+        PropertyReadDto? GetPropertyById(Guid id);
         System.Guid Add(PropertyAddDto property);
         bool Update(PropertyUpdateDto property);
-        bool Delete(int id);
+        bool Delete(Guid id);
 
-
+        
     }
 }

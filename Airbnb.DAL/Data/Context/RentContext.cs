@@ -22,11 +22,14 @@ public class RentContext : DbContext
     public RentContext(DbContextOptions<RentContext> options) : base(options)
     {
 
+
+
     }
-       
 
 
-protected override void OnModelCreating(ModelBuilder modelBuilder)
+
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         //User
         base.OnModelCreating(modelBuilder);
@@ -81,5 +84,188 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
         //images
         modelBuilder.Entity<Images>().HasKey(k=>k.Id);
 
+
+        #region Seeding 
+
+
+        var users = new List<User>
+{
+    new User
+    {
+        Id = Guid.NewGuid(),
+        UserRole = Role.Guest,
+        FName = "John",
+        LName = "Doe",
+        Email = "john.doe@example.com",
+        Password = "password123",
+        UserName = "johndoe",
+        PhoneNumber = "123456789",
+        Country = 1,
+        Governorate = 2,
+        City = "New York",
+        CreationDate = DateTime.Now
+    },
+    new User
+    {
+        Id = Guid.NewGuid(),
+        UserRole = Role.Guest,
+        FName = "Jane",
+        LName = "Doe",
+        Email = "jane.doe@example.com",
+        Password = "password123",
+        UserName = "janedoe",
+        PhoneNumber = "987654321",
+        Country = 2,
+        Governorate = 3,
+        City = "Los Angeles",
+        CreationDate = DateTime.Now
+    },
+    new User
+    {
+        Id = Guid.NewGuid(),
+        UserRole = Role.Guest,
+        FName = "Michael",
+        LName = "Smith",
+        Email = "michael.smith@example.com",
+        Password = "password123",
+        UserName = "michaelsmith",
+        PhoneNumber = "321456789",
+        Country = 3,
+        Governorate = 4,
+        City = "London",
+        CreationDate = DateTime.Now
+    },
+        new User
+    {
+        Id = Guid.NewGuid(),
+        UserRole = Role.Guest,
+        FName = "David",
+        LName = "Williams",
+        Email = "david.williams@example.com",
+        Password = "password123",
+        UserName = "davidwilliams",
+        PhoneNumber = "765432109",
+        Country = 4,
+        Governorate = 5,
+        City = "Paris",
+        CreationDate = DateTime.Now
+    },
+    new User
+    {
+        Id = Guid.NewGuid(),
+        UserRole = Role.Host,
+        FName = "Elizabeth",
+        LName = "Brown",
+        Email = "elizabeth.brown@example.com",
+        Password = "password123",
+        UserName = "elizabethbrown",
+        PhoneNumber = "543210987",
+        Country = 5,
+        Governorate = 6,
+        City = "Rome",
+        CreationDate = DateTime.Now
+    },
+    new User
+    {
+        Id = Guid.NewGuid(),
+        UserRole = Role.Guest,
+        FName = "Thomas",
+        LName = "Anderson",
+        Email = "thomas.anderson@example.com",
+        Password = "password123",
+        UserName = "thomasanderson",
+        PhoneNumber = "987654321",
+        Country = 6,
+        Governorate = 7,
+        City = "Tokyo",
+        CreationDate = DateTime.Now
+    },
+    };
+
+        var properties = new List<Property>
+{
+    new Property
+    {
+        Id = Guid.NewGuid(),
+        PropType = PropType.Apartment,
+        Country = 1,
+        Governorate = 2,
+        City = "New York",
+        CreationDate = DateTime.Now,
+        NumOfPeople = 4,
+        PricePerNight = 100,
+        Description = "Beautiful apartment in the heart of the city",
+        UserID = users[0].Id // Assign the ID of the user as the UserID
+    },
+    new Property
+    {
+        Id = Guid.NewGuid(),
+        PropType = PropType.Villa,
+        Country = 2,
+        Governorate = 3,
+        City = "Los Angeles",
+        CreationDate = DateTime.Now,
+        NumOfPeople = 6,
+        PricePerNight = 200,
+        Description = "Luxurious villa with a pool and garden",
+        UserID = users[1].Id
+    },
+    new Property
+    {
+        Id = Guid.NewGuid(),
+        PropType = PropType.Cabin,
+        Country = 3,
+        Governorate = 4,
+        City = "London",
+        CreationDate = DateTime.Now,
+        NumOfPeople = 2,
+        PricePerNight = 150,
+        Description = "Cozy cottage by the beach",
+        UserID = users[2].Id
+    },
+      new Property
+    {
+        Id = Guid.NewGuid(),
+        PropType = PropType.Room,
+        Country = 4,
+        Governorate = 5,
+        City = "Paris",
+        CreationDate = DateTime.Now,
+        NumOfPeople = 1,
+        PricePerNight = 50,
+        Description = "Cozy studio apartment in the city center",
+        UserID = users[3].Id
+    },
+    new Property
+    {
+        Id = Guid.NewGuid(),
+        PropType = PropType.Cabin,
+        Country = 5,
+        Governorate = 6,
+        City = "Rome",
+        CreationDate = DateTime.Now,
+        NumOfPeople = 4,
+        PricePerNight = 100,
+        Description = "Wooden cabin in the woods",
+        UserID = users[4].Id
+    },
+    new Property
+    {
+        Id = Guid.NewGuid(),
+        PropType = PropType.Duplex,
+        Country = 6,
+        Governorate = 7,
+        City = "Tokyo",
+        CreationDate = DateTime.Now,
+        NumOfPeople = 6,
+        PricePerNight = 200,
+        Description = "Luxurious penthouse with a view",
+        UserID = users[5].Id
+    },
+    // Add more properties here...
+};
+        modelBuilder.Entity<Property>().HasData(properties);
+        modelBuilder.Entity<User>().HasData(users);
     }
+    #endregion
 }

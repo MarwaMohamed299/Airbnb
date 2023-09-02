@@ -1,6 +1,8 @@
 
 using Airbnb.BL.Managers.properties;
+using Airbnb.BL.Managers.Users;
 using Airbnb.DAL;
+using Airbnb.DAL.Repos.Users;
 using Microsoft.EntityFrameworkCore;
 
 namespace Airbnb.APIs
@@ -19,13 +21,18 @@ namespace Airbnb.APIs
             builder.Services.AddSwaggerGen();
             builder.Services.AddDbContext<RentContext>(options=>options.UseSqlServer(ConString));
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+            builder.Services.AddScoped<IUserRepo, UserRepo>();
             builder.Services.AddScoped<IPropertyRepo, PropertyRepo>();
             builder.Services.AddScoped<IAmenityRepo, AmenityRepo>();
             builder.Services.AddScoped<IImageRepo, ImageRepo>();
             builder.Services.AddScoped<IReservationRepo, ReservationRepo>();
             builder.Services.AddScoped<IReviewRepo, ReviewRepo>();
             builder.Services.AddScoped<IRulesRepo, RulesRepo>();
+
+
             builder.Services.AddScoped<IPropertyManager, PropertyManager>();
+            builder.Services.AddScoped<IUserManager, UserManager>();
+
 
             var app = builder.Build();
 

@@ -22,6 +22,7 @@ namespace Airbnb.BL.Managers.properties
                 Id = p.Id,
                 CreationDate = p.CreationDate,
                 PropType = p.PropType,
+                UserID=p.UserID,
                 Country=p.Country,
                 Governorate=p.Governorate,
                 City=p.City,
@@ -30,14 +31,11 @@ namespace Airbnb.BL.Managers.properties
                 Description=p.Description
 
             });
-            
-            
-
         }
 
-        public PropertyReadDto? GetById(int id)
+        public PropertyReadDto? GetPropertyById(Guid id)
         {
-            Property? propertyFromDb = _propertyRepo.GetById( id);
+            Property? propertyFromDb = _propertyRepo.GetPropertyById( id);
             if (propertyFromDb ==null)
             {
                 return null;
@@ -46,6 +44,7 @@ namespace Airbnb.BL.Managers.properties
             {
                 Id = propertyFromDb.Id,
                 PropType = propertyFromDb.PropType,
+                UserID = propertyFromDb.UserID,
                 Country = propertyFromDb.Country,
                 Governorate = propertyFromDb.Governorate,
                 City = propertyFromDb.City,
@@ -61,6 +60,7 @@ namespace Airbnb.BL.Managers.properties
             Property property = new Property
             {
                 Id = propertyFromRequest.Id,
+                UserID=propertyFromRequest.UserID,
                 PropType = propertyFromRequest.PropType,
                 Country = propertyFromRequest.Country,
                 Governorate = propertyFromRequest.Governorate,
@@ -77,13 +77,14 @@ namespace Airbnb.BL.Managers.properties
 
         public bool Update(PropertyUpdateDto propertyFromRequest)
         {
-            Property? property = _propertyRepo.GetById(propertyFromRequest.Id);
+            Property? property = _propertyRepo.GetPropertyById(propertyFromRequest.Id);
             if (property == null)
             {
                 return false;
             }
             property.Id = propertyFromRequest.Id;
             property.PropType = propertyFromRequest.PropType;
+            property.UserID = propertyFromRequest.UserID;
             property.Country = propertyFromRequest.Country;
             property.Governorate = propertyFromRequest.Governorate;
             property.City = propertyFromRequest.City;
@@ -96,9 +97,9 @@ namespace Airbnb.BL.Managers.properties
             return true;
         }
 
-        public bool Delete(int id)
+        public bool Delete(Guid id)
         {
-            Property? property = _propertyRepo.GetById(id);
+            Property? property = _propertyRepo.GetPropertyById(id);
               if (property == null)
             {
                 return false;
@@ -107,7 +108,7 @@ namespace Airbnb.BL.Managers.properties
 
             _propertyRepo.SaveChanges();
             return true;
-                }
+        }
 
       
 
