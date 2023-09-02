@@ -1,133 +1,105 @@
 ﻿using Airbnb.BL.Dtos.Properties;
 using Airbnb.BL.Dtos.Users;
 using Airbnb.DAL;
-using Airbnb.DAL.Repos.Users;
-
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace Airbnb.BL.Managers.Users
 {
-    public class UserManager : IUserManager
+    public class UserManager:IUserManager
     {
-        private readonly IUserRepo _userRepo;
+        private readonly UserManager<User> _userManager;
+        private readonly IConfiguration _config;
 
-        public UserManager(IUserRepo userRepo)
+        public UserManager(UserManager<User> userManager, IConfiguration config)
         {
-            _userRepo = userRepo;
+            _userManager = userManager;
+            _config = config;
         }
 
 
-        public IEnumerable<UserReadDto> GetALL()
-        {
-            IEnumerable<User> UserFromDb = _userRepo.GetAll();
-            return UserFromDb.Select(u => new UserReadDto
-            {
-                Id = u.Id,
-                UserRole = u.UserRole,
-                FName = u.FName,
-                LName = u.LName,
-                Email = u.Email,
-                Password = u.Password,
-                UserName = u.UserName,
-                PhoneNumber = u.PhoneNumber,
-                Country = u.Country,
-                Governorate = u.Governorate,
-                City = u.City,
-                CreationDate = u.CreationDate
 
-
-            }); 
-        }
-
-        public UserReadDto? GetUserById(Guid id)
-        {
-            User? userFromDb = _userRepo.GetUserById(id);
-            if (userFromDb == null)
-            {
-                return null;
-            }
-            return new UserReadDto
-            {
-                UserRole = userFromDb.UserRole,
-                FName = userFromDb.FName,
-                LName = userFromDb.LName,
-                Email = userFromDb.Email,
-                Password = userFromDb.Password,
-                UserName = userFromDb.UserName,
-                PhoneNumber = userFromDb.PhoneNumber,
-                Country = userFromDb.Country,
-                Governorate = userFromDb.Governorate,
-                City = userFromDb.City,
-                CreationDate = userFromDb.CreationDate
-
-            };
-        }
-
-
-        public Guid Add(UserAddDto userFromRequest)
+        public async Task<IEnumerable<IdentityError>> Add(RegisterDto userFromRequest)
         {
             User user = new User
             {
-                UserRole = userFromRequest.UserRole,
+                Id = Guid.NewGuid().ToString(),
                 FName = userFromRequest.FName,
                 LName = userFromRequest.LName,
                 Email = userFromRequest.Email,
-                Password = userFromRequest.Password,
                 UserName = userFromRequest.UserName,
                 PhoneNumber = userFromRequest.PhoneNumber,
                 Country = userFromRequest.Country,
                 Governorate = userFromRequest.Governorate,
                 City = userFromRequest.City,
-
-
             };
-            _userRepo.Add(user);
-            _userRepo.SaveChanges();
-            return user.Id;
-
-
-        }
-        public bool Update(UserUpdateDto userFromRequest)
-        {
-            User? user = _userRepo.GetUserById(userFromRequest.Id);
-            if (user == null)
+            var RegisterResult = await _userManager.CreateAsync(user, userFromRequest.Password);
+            if (!RegisterResult.Succeeded)
             {
-                return false;
+                return RegisterResult.Errors;
             }
-
-            user.UserRole = userFromRequest.UserRole;
-            user.FName = userFromRequest.FName;
-            user.LName = userFromRequest.LName;
-            user.Email = userFromRequest.Email;
-            user.Password = userFromRequest.Password;
-            user.UserName = userFromRequest.UserName;
-            user.PhoneNumber = userFromRequest.PhoneNumber;
-            user.Country = userFromRequest.Country;
-            user.Governorate = userFromRequest.Governorate;
-            user.City = userFromRequest.City;
-            user.CreationDate = userFromRequest.CreationDate;
-
-            _userRepo.Update(user);
-            _userRepo.SaveChanges();
-            return true;
-
-        }
-       
-
-
-
-        public bool Delete(Guid id)
-        {
-            User? user = _userRepo.GetUserById(id);
-            if (user == null)
+            else
             {
-                return false;
+                var userClaims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.NameIdentifier, userFromRequest.UserName),
+                    new Claim(ClaimTypes.Email, userFromRequest.Email),
+                    new Claim("Nationality", "Egyptian"),
+                };
+                await _userManager.AddClaimsAsync(user, userClaims);
+                return null;
             }
-            _userRepo.Delete(user);
-
-             _userRepo.SaveChanges();
-            return true;
         }
 
+        public async Task<LoginResultDto> Login(LoginDto credentials)
+        {
+            LoginResultDto resultDto = new LoginResultDto();
+            var user = await _userManager.FindByNameAsync(credentials.UserName);
+            if (user is null)
+            {
+                resultDto.Success = false;
+                resultDto.Message = "User Name Or Password Isn't Correct";
+                return resultDto;
+            }
+            if(await _userManager.IsLockedOutAsync(user))
+            {
+                resultDto.Success = false;
+                resultDto.Message = "User Is Locked, Try again after 2 minutes";
+                return resultDto;
+            }
+            if(!(await _userManager.CheckPasswordAsync(user, credentials.Password)))
+            {
+                await _userManager.AccessFailedAsync(user);
+                resultDto.Success = false;
+                resultDto.Message = "User Name Or Password Isn't Correct";
+                return resultDto;
+            }
+            var secretKey = _config.GetValue<string>("SecretKey");
+            var secretKeyInBytes = Encoding.ASCII.GetBytes(secretKey);
+            var key = new SymmetricSecurityKey(secretKeyInBytes);
+            var generatingToken = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
+            var userClaims = await _userManager.GetClaimsAsync(user);
+            var jwt = new JwtSecurityToken
+                (
+                    claims:userClaims, 
+                    notBefore:DateTime.Now,
+                    issuer:"BackendTeam",
+                    audience:"users",
+                    expires:DateTime.Now.AddMinutes(15),
+                    signingCredentials:generatingToken
+                );
+            var tokenHandler = new JwtSecurityTokenHandler();
+            string tokenString = tokenHandler.WriteToken(jwt);
+            resultDto.Success = true;
+            resultDto.Message = "Login Successfully";
+            resultDto.Token = tokenString;
+            resultDto.ExpiryDate = jwt.ValidTo;
+            return resultDto;
+        }
     }
 }
 

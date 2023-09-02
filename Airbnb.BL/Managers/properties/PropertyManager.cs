@@ -18,8 +18,6 @@ namespace Airbnb.BL.Managers.properties
             IEnumerable<Property> propertyFromDb = _propertyRepo.GetAll();
             return propertyFromDb.Select(p => new PropertyReadDto
             {
-
-                Id = p.Id,
                 CreationDate = p.CreationDate,
                 PropType = p.PropType,
                 UserID=p.UserID,
@@ -42,7 +40,6 @@ namespace Airbnb.BL.Managers.properties
             }
             return new PropertyReadDto
             {
-                Id = propertyFromDb.Id,
                 PropType = propertyFromDb.PropType,
                 UserID = propertyFromDb.UserID,
                 Country = propertyFromDb.Country,
@@ -55,11 +52,10 @@ namespace Airbnb.BL.Managers.properties
             };
 
         }
-        public System.Guid Add(PropertyAddDto propertyFromRequest)
+        public string Add(PropertyAddDto propertyFromRequest)
         {
             Property property = new Property
             {
-                Id = propertyFromRequest.Id,
                 UserID=propertyFromRequest.UserID,
                 PropType = propertyFromRequest.PropType,
                 Country = propertyFromRequest.Country,
@@ -82,7 +78,6 @@ namespace Airbnb.BL.Managers.properties
             {
                 return false;
             }
-            property.Id = propertyFromRequest.Id;
             property.PropType = propertyFromRequest.PropType;
             property.UserID = propertyFromRequest.UserID;
             property.Country = propertyFromRequest.Country;

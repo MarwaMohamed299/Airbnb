@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace Airbnb.BL.Dtos.Users
 {
-    public class UserAddDto
+    public class RegisterDto
     {
-        public Guid Id { get; set; }
-        public Role UserRole { get; set; } = Role.Guest;
         public string FName { get; set; } = string.Empty;
         public string LName { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
