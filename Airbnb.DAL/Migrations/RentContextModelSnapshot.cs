@@ -50,8 +50,8 @@ namespace Airbnb.DAL.Migrations
                     b.Property<Guid?>("AmenityId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("PropertyId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("PropertyId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<Guid?>("RuleId")
                         .HasColumnType("uniqueidentifier");
@@ -60,8 +60,8 @@ namespace Airbnb.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("UserId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
@@ -84,8 +84,8 @@ namespace Airbnb.DAL.Migrations
 
             modelBuilder.Entity("Airbnb.DAL.Property", b =>
                 {
-                    b.Property<Guid>("UserID")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("City")
                         .IsRequired()
@@ -104,9 +104,6 @@ namespace Airbnb.DAL.Migrations
                     b.Property<int>("Governorate")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<int>("NumOfPeople")
                         .HasColumnType("int");
 
@@ -116,95 +113,101 @@ namespace Airbnb.DAL.Migrations
                     b.Property<int>("PropType")
                         .HasColumnType("int");
 
-                    b.HasKey("UserID");
+                    b.Property<string>("UserID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserID");
 
                     b.ToTable("Properties");
 
                     b.HasData(
                         new
                         {
-                            UserID = new Guid("4201d29d-4239-43fb-a907-7c7ca0836c9f"),
+                            Id = "c519065e-4bcf-4fb7-8978-d6d02ab86f6e",
                             City = "New York",
                             Country = 1,
-                            CreationDate = new DateTime(2023, 9, 2, 13, 56, 14, 516, DateTimeKind.Local).AddTicks(7664),
+                            CreationDate = new DateTime(2023, 9, 2, 18, 21, 48, 343, DateTimeKind.Local).AddTicks(1579),
                             Description = "Beautiful apartment in the heart of the city",
                             Governorate = 2,
-                            Id = new Guid("7fccf48d-5601-4903-b608-d00b7d3449f2"),
                             NumOfPeople = 4,
                             PricePerNight = 100m,
-                            PropType = 0
+                            PropType = 0,
+                            UserID = "f5c999d7-824f-4252-9f0c-dedb1d932065"
                         },
                         new
                         {
-                            UserID = new Guid("2ddd6235-d265-4303-9add-65619bc0b1e6"),
+                            Id = "f2e19869-0394-4cb6-a6f7-bf91ec7a90ef",
                             City = "Los Angeles",
                             Country = 2,
-                            CreationDate = new DateTime(2023, 9, 2, 13, 56, 14, 516, DateTimeKind.Local).AddTicks(7673),
+                            CreationDate = new DateTime(2023, 9, 2, 18, 21, 48, 343, DateTimeKind.Local).AddTicks(1592),
                             Description = "Luxurious villa with a pool and garden",
                             Governorate = 3,
-                            Id = new Guid("bf6ec124-8d8e-4c7a-8131-95bf9b504f5b"),
                             NumOfPeople = 6,
                             PricePerNight = 200m,
-                            PropType = 1
+                            PropType = 1,
+                            UserID = "8627c943-b0b3-415f-b872-416b875a64d6"
                         },
                         new
                         {
-                            UserID = new Guid("5c2821d2-6e03-4fd1-b304-370303e2f0d5"),
+                            Id = "8cb57124-196a-42af-aa0d-e142ff96c2e9",
                             City = "London",
                             Country = 3,
-                            CreationDate = new DateTime(2023, 9, 2, 13, 56, 14, 516, DateTimeKind.Local).AddTicks(7677),
+                            CreationDate = new DateTime(2023, 9, 2, 18, 21, 48, 343, DateTimeKind.Local).AddTicks(1605),
                             Description = "Cozy cottage by the beach",
                             Governorate = 4,
-                            Id = new Guid("3e494a77-31e9-4f56-b6e5-31bed13ebcd9"),
                             NumOfPeople = 2,
                             PricePerNight = 150m,
-                            PropType = 2
+                            PropType = 2,
+                            UserID = "26a6d6a2-2fc2-4c75-907d-d4d9430b5e76"
                         },
                         new
                         {
-                            UserID = new Guid("373ae1d0-046e-41aa-b473-7b258a91ea3d"),
+                            Id = "ced3d5e9-71d7-409a-ba59-2f303a43b892",
                             City = "Paris",
                             Country = 4,
-                            CreationDate = new DateTime(2023, 9, 2, 13, 56, 14, 516, DateTimeKind.Local).AddTicks(7681),
+                            CreationDate = new DateTime(2023, 9, 2, 18, 21, 48, 343, DateTimeKind.Local).AddTicks(1614),
                             Description = "Cozy studio apartment in the city center",
                             Governorate = 5,
-                            Id = new Guid("be04c98b-9a9a-45c3-b813-6c2f3caedd9d"),
                             NumOfPeople = 1,
                             PricePerNight = 50m,
-                            PropType = 4
+                            PropType = 4,
+                            UserID = "8c4fefdd-75a9-497f-91a8-e8eb537135c6"
                         },
                         new
                         {
-                            UserID = new Guid("0d7cba71-a72f-4015-b80c-62769a622628"),
+                            Id = "d71ed516-0896-4605-a761-eab2fe00b319",
                             City = "Rome",
                             Country = 5,
-                            CreationDate = new DateTime(2023, 9, 2, 13, 56, 14, 516, DateTimeKind.Local).AddTicks(7687),
+                            CreationDate = new DateTime(2023, 9, 2, 18, 21, 48, 343, DateTimeKind.Local).AddTicks(1624),
                             Description = "Wooden cabin in the woods",
                             Governorate = 6,
-                            Id = new Guid("ac9060ae-a827-4925-b232-96518a6487e4"),
                             NumOfPeople = 4,
                             PricePerNight = 100m,
-                            PropType = 2
+                            PropType = 2,
+                            UserID = "8d230bcb-716a-46db-b1ab-0fba86fac50b"
                         },
                         new
                         {
-                            UserID = new Guid("eec1a108-9941-443c-a35d-c3d7d6076be9"),
+                            Id = "5df202b1-71dd-4d50-b6cf-24380efee546",
                             City = "Tokyo",
                             Country = 6,
-                            CreationDate = new DateTime(2023, 9, 2, 13, 56, 14, 516, DateTimeKind.Local).AddTicks(7692),
+                            CreationDate = new DateTime(2023, 9, 2, 18, 21, 48, 343, DateTimeKind.Local).AddTicks(1633),
                             Description = "Luxurious penthouse with a view",
                             Governorate = 7,
-                            Id = new Guid("a1fbd31d-dba1-4cb7-8f96-25c453a42bce"),
                             NumOfPeople = 6,
                             PricePerNight = 200m,
-                            PropType = 3
+                            PropType = 3,
+                            UserID = "ec41f813-d16c-482c-9fd9-f70b8b149486"
                         });
                 });
 
             modelBuilder.Entity("Airbnb.DAL.PropertyAmenity", b =>
                 {
-                    b.Property<Guid>("PropertyId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("PropertyId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<Guid>("AmenityId")
                         .HasColumnType("uniqueidentifier");
@@ -218,8 +221,8 @@ namespace Airbnb.DAL.Migrations
 
             modelBuilder.Entity("Airbnb.DAL.PropertyRule", b =>
                 {
-                    b.Property<Guid>("PropertyId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("PropertyId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<Guid>("RuleId")
                         .HasColumnType("uniqueidentifier");
@@ -252,12 +255,18 @@ namespace Airbnb.DAL.Migrations
 
             modelBuilder.Entity("Airbnb.DAL.User", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
 
                     b.Property<string>("City")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Country")
@@ -267,8 +276,11 @@ namespace Airbnb.DAL.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
 
                     b.Property<string>("FName")
                         .IsRequired()
@@ -281,113 +293,188 @@ namespace Airbnb.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
+                    b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserName")
-                        .IsRequired()
+                    b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<int>("UserRole")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers", (string)null);
 
                     b.HasData(
                         new
                         {
-                            Id = new Guid("4201d29d-4239-43fb-a907-7c7ca0836c9f"),
+                            Id = "f5c999d7-824f-4252-9f0c-dedb1d932065",
+                            AccessFailedCount = 0,
                             City = "New York",
+                            ConcurrencyStamp = "33cdb605-5252-4add-bd92-5b23f9d91779",
                             Country = 1,
-                            CreationDate = new DateTime(2023, 9, 2, 13, 56, 14, 516, DateTimeKind.Local).AddTicks(7618),
+                            CreationDate = new DateTime(2023, 9, 2, 18, 21, 48, 343, DateTimeKind.Local).AddTicks(1443),
                             Email = "john.doe@example.com",
+                            EmailConfirmed = false,
                             FName = "John",
                             Governorate = 2,
                             LName = "Doe",
+                            LockoutEnabled = false,
                             Password = "password123",
                             PhoneNumber = "123456789",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "6bbd656c-9855-45f5-8172-0385afab9610",
+                            TwoFactorEnabled = false,
                             UserName = "johndoe",
                             UserRole = 0
                         },
                         new
                         {
-                            Id = new Guid("2ddd6235-d265-4303-9add-65619bc0b1e6"),
+                            Id = "8627c943-b0b3-415f-b872-416b875a64d6",
+                            AccessFailedCount = 0,
                             City = "Los Angeles",
+                            ConcurrencyStamp = "2dd87695-3456-4d25-99c6-0f9ab1cc30af",
                             Country = 2,
-                            CreationDate = new DateTime(2023, 9, 2, 13, 56, 14, 516, DateTimeKind.Local).AddTicks(7623),
+                            CreationDate = new DateTime(2023, 9, 2, 18, 21, 48, 343, DateTimeKind.Local).AddTicks(1483),
                             Email = "jane.doe@example.com",
+                            EmailConfirmed = false,
                             FName = "Jane",
                             Governorate = 3,
                             LName = "Doe",
+                            LockoutEnabled = false,
                             Password = "password123",
                             PhoneNumber = "987654321",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "a089bc6b-5f28-42da-8b2f-b3afbcab8246",
+                            TwoFactorEnabled = false,
                             UserName = "janedoe",
                             UserRole = 0
                         },
                         new
                         {
-                            Id = new Guid("5c2821d2-6e03-4fd1-b304-370303e2f0d5"),
+                            Id = "26a6d6a2-2fc2-4c75-907d-d4d9430b5e76",
+                            AccessFailedCount = 0,
                             City = "London",
+                            ConcurrencyStamp = "db4d3b44-ef90-4219-bdd6-17165a9a126f",
                             Country = 3,
-                            CreationDate = new DateTime(2023, 9, 2, 13, 56, 14, 516, DateTimeKind.Local).AddTicks(7643),
+                            CreationDate = new DateTime(2023, 9, 2, 18, 21, 48, 343, DateTimeKind.Local).AddTicks(1496),
                             Email = "michael.smith@example.com",
+                            EmailConfirmed = false,
                             FName = "Michael",
                             Governorate = 4,
                             LName = "Smith",
+                            LockoutEnabled = false,
                             Password = "password123",
                             PhoneNumber = "321456789",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "a4dd6ad3-02b2-419e-b667-1e974b87de89",
+                            TwoFactorEnabled = false,
                             UserName = "michaelsmith",
                             UserRole = 0
                         },
                         new
                         {
-                            Id = new Guid("373ae1d0-046e-41aa-b473-7b258a91ea3d"),
+                            Id = "8c4fefdd-75a9-497f-91a8-e8eb537135c6",
+                            AccessFailedCount = 0,
                             City = "Paris",
+                            ConcurrencyStamp = "5bad64f0-db22-4594-bd62-54707caf8b27",
                             Country = 4,
-                            CreationDate = new DateTime(2023, 9, 2, 13, 56, 14, 516, DateTimeKind.Local).AddTicks(7647),
+                            CreationDate = new DateTime(2023, 9, 2, 18, 21, 48, 343, DateTimeKind.Local).AddTicks(1514),
                             Email = "david.williams@example.com",
+                            EmailConfirmed = false,
                             FName = "David",
                             Governorate = 5,
                             LName = "Williams",
+                            LockoutEnabled = false,
                             Password = "password123",
                             PhoneNumber = "765432109",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "88be0434-cb13-4ded-a475-1cc50d9684bd",
+                            TwoFactorEnabled = false,
                             UserName = "davidwilliams",
                             UserRole = 0
                         },
                         new
                         {
-                            Id = new Guid("0d7cba71-a72f-4015-b80c-62769a622628"),
+                            Id = "8d230bcb-716a-46db-b1ab-0fba86fac50b",
+                            AccessFailedCount = 0,
                             City = "Rome",
+                            ConcurrencyStamp = "c8323fbb-c5a4-4158-9f28-c03e1c0527d4",
                             Country = 5,
-                            CreationDate = new DateTime(2023, 9, 2, 13, 56, 14, 516, DateTimeKind.Local).AddTicks(7651),
+                            CreationDate = new DateTime(2023, 9, 2, 18, 21, 48, 343, DateTimeKind.Local).AddTicks(1541),
                             Email = "elizabeth.brown@example.com",
+                            EmailConfirmed = false,
                             FName = "Elizabeth",
                             Governorate = 6,
                             LName = "Brown",
+                            LockoutEnabled = false,
                             Password = "password123",
                             PhoneNumber = "543210987",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "0b672e65-c449-4e4e-9d6c-c4c0b089ff20",
+                            TwoFactorEnabled = false,
                             UserName = "elizabethbrown",
                             UserRole = 1
                         },
                         new
                         {
-                            Id = new Guid("eec1a108-9941-443c-a35d-c3d7d6076be9"),
+                            Id = "ec41f813-d16c-482c-9fd9-f70b8b149486",
+                            AccessFailedCount = 0,
                             City = "Tokyo",
+                            ConcurrencyStamp = "545a1d5e-8882-408d-b98e-17c6e41291a9",
                             Country = 6,
-                            CreationDate = new DateTime(2023, 9, 2, 13, 56, 14, 516, DateTimeKind.Local).AddTicks(7657),
+                            CreationDate = new DateTime(2023, 9, 2, 18, 21, 48, 343, DateTimeKind.Local).AddTicks(1559),
                             Email = "thomas.anderson@example.com",
+                            EmailConfirmed = false,
                             FName = "Thomas",
                             Governorate = 7,
                             LName = "Anderson",
+                            LockoutEnabled = false,
                             Password = "password123",
                             PhoneNumber = "987654321",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "36c328c4-b532-44e4-8284-783847cee2d6",
+                            TwoFactorEnabled = false,
                             UserName = "thomasanderson",
                             UserRole = 0
                         });
@@ -395,8 +482,8 @@ namespace Airbnb.DAL.Migrations
 
             modelBuilder.Entity("Airbnb.DAL.UserReserveProperty", b =>
                 {
-                    b.Property<Guid>("PropertyId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("PropertyId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("CheckInDate")
                         .HasColumnType("datetime2");
@@ -404,8 +491,9 @@ namespace Airbnb.DAL.Migrations
                     b.Property<DateTime>("CheckOutDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("PropertyId", "CheckInDate");
 
@@ -416,11 +504,11 @@ namespace Airbnb.DAL.Migrations
 
             modelBuilder.Entity("Airbnb.DAL.UserReviewProperty", b =>
                 {
-                    b.Property<Guid>("PropertyId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("PropertyId")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<float>("Rating")
                         .HasColumnType("real");
@@ -430,6 +518,139 @@ namespace Airbnb.DAL.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Reviews");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasDatabaseName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
+
+                    b.ToTable("AspNetRoles", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RoleId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetRoleClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderKey")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderDisplayName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("LoginProvider", "ProviderKey");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserLogins", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("RoleId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetUserRoles", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId", "LoginProvider", "Name");
+
+                    b.ToTable("AspNetUserTokens", (string)null);
                 });
 
             modelBuilder.Entity("Airbnb.DAL.Images", b =>
@@ -517,7 +738,7 @@ namespace Airbnb.DAL.Migrations
                     b.HasOne("Airbnb.DAL.Property", "Property")
                         .WithMany("Reservations")
                         .HasForeignKey("PropertyId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Airbnb.DAL.User", "User")
@@ -548,6 +769,57 @@ namespace Airbnb.DAL.Migrations
                     b.Navigation("Property");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.HasOne("Airbnb.DAL.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.HasOne("Airbnb.DAL.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Airbnb.DAL.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.HasOne("Airbnb.DAL.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Airbnb.DAL.Amenity", b =>

@@ -2,8 +2,10 @@
 using Airbnb.BL.Managers.properties;
 using Airbnb.BL.Managers.Users;
 using Airbnb.DAL;
-using Airbnb.DAL.Repos.Users;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace Airbnb.APIs
 {
@@ -19,20 +21,44 @@ namespace Airbnb.APIs
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddIdentity<User, IdentityRole>(options =>
+            {
+                options.Password.RequireUppercase = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequiredLength = 6;
+                options.User.RequireUniqueEmail = true;
+                options.Lockout.MaxFailedAccessAttempts = 3;
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(1);
+            }).AddEntityFrameworkStores<RentContext>();
+            builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = "default";
+                options.DefaultChallengeScheme = "default";
+            }).
+                AddJwtBearer("default", options =>
+                {
+                    var secretKey = builder.Configuration.GetValue<string>("SecretKey");
+                    var secretKeyInBytes = Encoding.ASCII.GetBytes(secretKey);
+                    var key = new SymmetricSecurityKey(secretKeyInBytes);
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = false,
+                        ValidateAudience = false,
+                        IssuerSigningKey = key
+                    };
+                });
+            
             builder.Services.AddDbContext<RentContext>(options=>options.UseSqlServer(ConString));
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-            builder.Services.AddScoped<IUserRepo, UserRepo>();
+            builder.Services.AddScoped<IUserManager, UserManager>();
             builder.Services.AddScoped<IPropertyRepo, PropertyRepo>();
             builder.Services.AddScoped<IAmenityRepo, AmenityRepo>();
             builder.Services.AddScoped<IImageRepo, ImageRepo>();
             builder.Services.AddScoped<IReservationRepo, ReservationRepo>();
             builder.Services.AddScoped<IReviewRepo, ReviewRepo>();
             builder.Services.AddScoped<IRulesRepo, RulesRepo>();
-
-
             builder.Services.AddScoped<IPropertyManager, PropertyManager>();
-            builder.Services.AddScoped<IUserManager, UserManager>();
-
 
             var app = builder.Build();
 
@@ -45,8 +71,9 @@ namespace Airbnb.APIs
 
             app.UseHttpsRedirection();
 
-            app.UseAuthorization();
+            app.UseAuthentication();
 
+            app.UseAuthorization();
 
             app.MapControllers();
 

@@ -8,7 +8,7 @@ namespace Airbnb.DAL;
 
 public class Property
 {
-    public Guid Id { get; set; }
+    public string Id { get; set; } = Guid.NewGuid().ToString();
     public PropType PropType { get; set; }
     public int Country { get; set; }
     public int Governorate { get; set; }
@@ -18,7 +18,7 @@ public class Property
     public decimal PricePerNight { get; set; }  
     public string Description { get; set; } = string.Empty;
     //Nav Props
-    public Guid UserID { get; set; }
+    public string UserID { get; set; }
     public User? User { get; set; }
     public ICollection<UserReserveProperty> Reservations { get; set; } = new HashSet<UserReserveProperty>();
     public ICollection<UserReviewProperty> Reviews { get; set; } = new HashSet<UserReviewProperty>();

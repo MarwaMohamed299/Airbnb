@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Airbnb.DAL;
 
-public class RentContext : DbContext
+public class RentContext : IdentityDbContext<User>
+
 {
-    public DbSet<User> Users => Set<User>();
     public DbSet<Property> Properties => Set<Property>();
     public DbSet<Amenity> Amenities => Set<Amenity>();
     public DbSet<Rules> Rules => Set<Rules>();
@@ -20,15 +21,7 @@ public class RentContext : DbContext
     public DbSet<Images> Images => Set<Images>();
 
     public RentContext(DbContextOptions<RentContext> options) : base(options)
-    {
-
-
-
-    }
-
-
-
-
+    {}
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         //User
@@ -44,9 +37,9 @@ public class RentContext : DbContext
             .HasForeignKey<Images>(a=>a.UserId).OnDelete(DeleteBehavior.Restrict);
 
         //Property
-        modelBuilder.Entity<Property>().HasKey(k => k.UserID);
+        modelBuilder.Entity<Property>().HasKey(k => k.Id);
         modelBuilder.Entity<Property>().HasMany(r=>r.Reservations).WithOne(p=>p.Property)
-            .HasForeignKey(fk=>fk.PropertyId).OnDelete(DeleteBehavior.Cascade);
+            .HasForeignKey(fk=>fk.PropertyId).OnDelete(DeleteBehavior.NoAction);
         modelBuilder.Entity<Property>().HasMany(r => r.Reviews).WithOne(p => p.Property)
             .HasForeignKey(fk => fk.PropertyId).OnDelete(DeleteBehavior.Cascade);
         modelBuilder.Entity<Property>().HasMany(pa => pa.PropertyAmenities).WithOne(p => p.Property)
@@ -92,7 +85,7 @@ public class RentContext : DbContext
 {
     new User
     {
-        Id = Guid.NewGuid(),
+        Id = Guid.NewGuid().ToString(),
         UserRole = Role.Guest,
         FName = "John",
         LName = "Doe",
@@ -107,7 +100,7 @@ public class RentContext : DbContext
     },
     new User
     {
-        Id = Guid.NewGuid(),
+        Id = Guid.NewGuid().ToString(),
         UserRole = Role.Guest,
         FName = "Jane",
         LName = "Doe",
@@ -122,7 +115,7 @@ public class RentContext : DbContext
     },
     new User
     {
-        Id = Guid.NewGuid(),
+        Id = Guid.NewGuid().ToString(),
         UserRole = Role.Guest,
         FName = "Michael",
         LName = "Smith",
@@ -137,7 +130,7 @@ public class RentContext : DbContext
     },
         new User
     {
-        Id = Guid.NewGuid(),
+        Id = Guid.NewGuid().ToString(),
         UserRole = Role.Guest,
         FName = "David",
         LName = "Williams",
@@ -152,7 +145,7 @@ public class RentContext : DbContext
     },
     new User
     {
-        Id = Guid.NewGuid(),
+        Id = Guid.NewGuid().ToString(),
         UserRole = Role.Host,
         FName = "Elizabeth",
         LName = "Brown",
@@ -167,7 +160,7 @@ public class RentContext : DbContext
     },
     new User
     {
-        Id = Guid.NewGuid(),
+        Id = Guid.NewGuid().ToString(),
         UserRole = Role.Guest,
         FName = "Thomas",
         LName = "Anderson",
@@ -186,7 +179,7 @@ public class RentContext : DbContext
 {
     new Property
     {
-        Id = Guid.NewGuid(),
+        Id = Guid.NewGuid().ToString(),
         PropType = PropType.Apartment,
         Country = 1,
         Governorate = 2,
@@ -199,7 +192,7 @@ public class RentContext : DbContext
     },
     new Property
     {
-        Id = Guid.NewGuid(),
+        Id = Guid.NewGuid().ToString(),
         PropType = PropType.Villa,
         Country = 2,
         Governorate = 3,
@@ -208,11 +201,11 @@ public class RentContext : DbContext
         NumOfPeople = 6,
         PricePerNight = 200,
         Description = "Luxurious villa with a pool and garden",
-        UserID = users[1].Id
+        UserID =(users[1].Id)
     },
     new Property
     {
-        Id = Guid.NewGuid(),
+        Id = Guid.NewGuid().ToString(),
         PropType = PropType.Cabin,
         Country = 3,
         Governorate = 4,
@@ -221,11 +214,11 @@ public class RentContext : DbContext
         NumOfPeople = 2,
         PricePerNight = 150,
         Description = "Cozy cottage by the beach",
-        UserID = users[2].Id
+        UserID =(users[2].Id)
     },
       new Property
     {
-        Id = Guid.NewGuid(),
+        Id = Guid.NewGuid().ToString(),
         PropType = PropType.Room,
         Country = 4,
         Governorate = 5,
@@ -234,11 +227,11 @@ public class RentContext : DbContext
         NumOfPeople = 1,
         PricePerNight = 50,
         Description = "Cozy studio apartment in the city center",
-        UserID = users[3].Id
+        UserID = (users[3].Id)
     },
     new Property
     {
-        Id = Guid.NewGuid(),
+        Id = Guid.NewGuid().ToString(),
         PropType = PropType.Cabin,
         Country = 5,
         Governorate = 6,
@@ -247,11 +240,11 @@ public class RentContext : DbContext
         NumOfPeople = 4,
         PricePerNight = 100,
         Description = "Wooden cabin in the woods",
-        UserID = users[4].Id
+        UserID =(users[4].Id)
     },
     new Property
     {
-        Id = Guid.NewGuid(),
+        Id = Guid.NewGuid().ToString(),
         PropType = PropType.Duplex,
         Country = 6,
         Governorate = 7,
@@ -260,7 +253,7 @@ public class RentContext : DbContext
         NumOfPeople = 6,
         PricePerNight = 200,
         Description = "Luxurious penthouse with a view",
-        UserID = users[5].Id
+        UserID =(users[5].Id)
     },
     // Add more properties here...
 };

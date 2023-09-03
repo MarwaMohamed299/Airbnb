@@ -8,13 +8,12 @@ namespace Airbnb.DAL;
 
 public class UserReserveProperty
 {
-    
     public DateTime CheckInDate { get; set; }
     public DateTime CheckOutDate { get; set; }
 
     //Navigational Property
-    public Guid UserId { get; set; }
-    public Guid PropertyId { get; set; }
+    public string UserId { get; set; }
+    public string PropertyId { get; set; }
     public User? User { get; set; }
     public Property? Property { get; set; }
 }

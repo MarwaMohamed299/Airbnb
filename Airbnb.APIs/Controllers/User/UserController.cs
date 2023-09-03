@@ -1,9 +1,11 @@
-﻿using Airbnb.BL.Dtos.GeneralResponse;
+﻿using Airbnb.BL;
+using Airbnb.BL.Dtos.GeneralResponse;
 using Airbnb.BL.Dtos.Properties;
 using Airbnb.BL.Dtos.Users;
 using Airbnb.BL.Managers.Users;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace Airbnb.APIs.Controllers.User
 {
@@ -18,60 +20,30 @@ namespace Airbnb.APIs.Controllers.User
             _userManager = userManager;
         }
 
-
-        [HttpGet]
-        public ActionResult<List<UserReadDto>> GetAll()
-        {
-            return _userManager.GetALL().ToList();
-        }
-
-        [HttpGet]
-        [Route("{id}")]
-
-        public ActionResult<UserReadDto> GetUserById(Guid id)
-        {
-            UserReadDto? user = _userManager.GetUserById(id);
-            if (user is null)
-            {
-                return NotFound();
-            }
-            return user;
-        }
-
         [HttpPost]
-        public ActionResult Add(UserAddDto userDto)
+        [Route("Register")]
+        public async Task<ActionResult> Register(RegisterDto userDto)
         {
-            var newId = _userManager.Add(userDto);
-            return CreatedAtAction(nameof(GetUserById),
-                new { id = newId },
-                new GeneralResponse("User Has Been Added Successfully!"));
+            var result = await _userManager.Add(userDto);
+            if (result is null)
+            {
+                return Ok("User Created Successfully");
+            }
+            else
+            {
+                return BadRequest(result);
+            }
         }
-
-        [HttpPut]
-        public ActionResult Update(UserUpdateDto userDto)
+        [HttpPost]
+        [Route("Login")]
+        public async Task<ActionResult<LoginResultDto>> Login(LoginDto credentials)
         {
-            var isFound = _userManager.Update(userDto);
-                if (!isFound) 
+            var result = await _userManager.Login(credentials);
+            if (result.Success == false)
             {
-                return NotFound();
+                return BadRequest(result);
             }
-            return NoContent();
-
-
-        }
-
-        [HttpDelete]
-        [Route("{id}")]
-        public ActionResult Delete(Guid id)
-        { var isFound = _userManager.Delete(id);
-            if (!isFound)
-            {
-                return NotFound();
-            }
-            return NoContent();
-
-
-
+            return result;
         }
     }
 }
