@@ -13,4 +13,35 @@ public class AmenityRepo : GenericRepo<Amenity>, IAmenityRepo
     {
         _rentContext = rentContext;
     }
+
+
+    public IEnumerable<Amenity> GetAll()
+    {
+        return _rentContext.Set<Amenity>().ToList();
+
+    }
+
+    public Amenity? GetAmenityById(Guid Id)
+    {
+        return _rentContext.Set<Amenity>().Find();
+    }
+
+    public int SaveChanges()
+    {
+        return _rentContext.SaveChanges();
+    }
+    public void Add(Amenity amenity)
+    {
+        _rentContext.Set<Amenity>().Add(amenity);
+    }
+
+    public void update (Amenity amenity)
+    {
+
+    }
+    public void Delete(Amenity amenity)
+    {
+        _rentContext.Set<Amenity>().Remove(amenity);
+    }
+
 }

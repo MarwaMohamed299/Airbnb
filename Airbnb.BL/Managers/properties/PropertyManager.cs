@@ -59,7 +59,8 @@ namespace Airbnb.BL.Managers.properties
         {
             Property property = new Property
             {
-                Id = propertyFromRequest.Id,
+                Id = Guid.NewGuid(),
+
                 UserID=propertyFromRequest.UserID,
                 PropType = propertyFromRequest.PropType,
                 Country = propertyFromRequest.Country,
@@ -82,7 +83,6 @@ namespace Airbnb.BL.Managers.properties
             {
                 return false;
             }
-            property.Id = propertyFromRequest.Id;
             property.PropType = propertyFromRequest.PropType;
             property.UserID = propertyFromRequest.UserID;
             property.Country = propertyFromRequest.Country;
