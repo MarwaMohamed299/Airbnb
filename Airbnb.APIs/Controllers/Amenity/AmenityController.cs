@@ -1,8 +1,6 @@
 ﻿using Airbnb.BL.Dtos.Amenities;
 using Airbnb.BL.Dtos.GeneralResponse;
-using Airbnb.BL.Dtos.Properties;
 using Airbnb.BL.Managers.Amenities;
-using Airbnb.BL.Managers.properties;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Airbnb.APIs.Controllers.Amenity
@@ -11,17 +9,14 @@ namespace Airbnb.APIs.Controllers.Amenity
     [ApiController]
     public class AmenityController : ControllerBase
     {
-        [Route("api/[controller]")]
-        [ApiController]
-        public class PropertyController : ControllerBase
-        {
+     
             private readonly IAmenityManager _amenityManager;
 
-            public PropertyController(IAmenityManager amenityManager)
+            public AmenityController(IAmenityManager amenityManager)
             {
-                amenityManager = _amenityManager;
-
+            _amenityManager = amenityManager;
             }
+
             [HttpGet]
             public ActionResult <List<AmenityReadDto>> GetAll()
             {
@@ -79,5 +74,5 @@ namespace Airbnb.APIs.Controllers.Amenity
 
     }
 
-}
+
 
