@@ -1,6 +1,6 @@
 ﻿
 
-namespace Airbnb.BL.Dtos.Amenity
+namespace Airbnb.BL.Dtos.Amenities
 {
     public class AmenityReadDto
     {

@@ -1,6 +1,5 @@
 ﻿using Airbnb.BL.Dtos.Properties;
 using Airbnb.DAL;
-using Property = Airbnb.DAL.Property;
 
 namespace Airbnb.BL.Managers.properties
 {
