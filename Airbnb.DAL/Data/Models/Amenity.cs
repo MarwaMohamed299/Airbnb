@@ -10,6 +10,6 @@ public class Amenity
 
     //Nav Props 
     public ICollection<PropertyAmenity> PropertyAmenities { get; set; } = new HashSet<PropertyAmenity>();
-    public Images? Img { get; set; }
+    public Image? Img { get; set; }
 
 }

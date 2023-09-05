@@ -13,7 +13,7 @@ public class UnitOfWork : IUnitOfWork
     public IImageRepo ImageRepo { get; }
     public IReservationRepo ReservationRepo { get; }
     public IReviewRepo ReviewRepo { get; }
-    public IRulesRepo RulesRepo { get; }
+    public IRuleRepo RulesRepo { get; }
     private readonly RentContext _rentContext;
 
     public UnitOfWork
@@ -24,7 +24,7 @@ public class UnitOfWork : IUnitOfWork
             IImageRepo imageRepo,
             IReservationRepo reservationRepo,
             IReviewRepo reviewRepo,
-            IRulesRepo rulesRepo
+            IRuleRepo rulesRepo
         )
             {
                 _rentContext = rentContext;

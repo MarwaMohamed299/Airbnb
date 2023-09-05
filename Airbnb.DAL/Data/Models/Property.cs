@@ -24,6 +24,6 @@ public class Property
     public ICollection<UserReviewProperty> Reviews { get; set; } = new HashSet<UserReviewProperty>();
     public ICollection<PropertyAmenity> PropertyAmenities{ get; set; } = new HashSet<PropertyAmenity>();
     public ICollection<PropertyRule> PropertyRules{ get; set; } = new HashSet<PropertyRule>();
-    public ICollection<Images> Imgs { get; set; }= new HashSet<Images>();
+    public ICollection<Image> Imgs { get; set; }= new HashSet<Image>();
 }
  

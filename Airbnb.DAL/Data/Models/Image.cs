@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Airbnb.DAL;
 
-public class Images
+public class Image
 {
     public Guid Id { get; set; }
     public string URL { get; set; } = string.Empty;
@@ -22,5 +22,5 @@ public class Images
     public User? User { get; set; }
     public Property? Property { get; set; }
     public Amenity? Amenity { get; set; }
-    public Rules? Rule { get; set; }
+    public Rule? Rule { get; set; }
 }

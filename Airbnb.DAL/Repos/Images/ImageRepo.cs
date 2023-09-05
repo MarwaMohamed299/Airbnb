@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Airbnb.DAL;
 
-public class ImageRepo : GenericRepo<Images>, IImageRepo
+public class ImageRepo : GenericRepo<Image>, IImageRepo
 {
     private readonly RentContext _rentContext;
 
@@ -16,25 +16,25 @@ public class ImageRepo : GenericRepo<Images>, IImageRepo
         _rentContext = rentContext;
     }
 
-    public IEnumerable<Images> GetAllImages()                //GetAll
+    public IEnumerable<Image> GetAllImages()                //GetAll
     {
-      return  _rentContext.Set<Images>().ToList();
+      return  _rentContext.Set<Image>().ToList();
     }
 
-    public Images? GetImagesById(Guid Id)                   //GetById
+    public Image? GetImagesById(Guid Id)                   //GetById
     {
-        return _rentContext.Set<Images>().Find();
+        return _rentContext.Set<Image>().Find();
     }
-    public void Add(Images images)                           //Add
+    public void Add(Image images)                           //Add
     {
-        _rentContext.Set<Images>().Add(images);
+        _rentContext.Set<Image>().Add(images);
     }
-    public void Update(Images images)                       //update
+    public void Update(Image images)                       //update
     {
     }
-    public void Delete(Images images)                       //Delete
+    public void Delete(Image images)                       //Delete
     {
-        _rentContext.Set<Images>().Remove(images);
+        _rentContext.Set<Image>().Remove(images);
     }
 
 

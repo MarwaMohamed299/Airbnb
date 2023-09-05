@@ -8,7 +8,7 @@ namespace Airbnb.BL.Dtos.Images
 {
     public class ImagesAddDto
     {
-        public Guid Id { get; set; }
-        public string URL { get; set; } = string.Empty;
+        public required Guid Id { get; set; }
+        public required string URL { get; set; } = string.Empty; 
     }
 }

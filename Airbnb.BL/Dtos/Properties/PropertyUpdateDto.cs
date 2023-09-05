@@ -11,7 +11,7 @@ namespace Airbnb.BL.Dtos.Properties
     {
         public Guid Id { get;}
         public PropType PropType { get; set; }
-        public string UserID { get; set; }
+        public string UserID { get; set; } = string.Empty;
 
         public int Country { get; set; }
         public DateTime CreationDate { get; set; } = DateTime.Now;

@@ -23,7 +23,7 @@ namespace Airbnb.BL.Managers.Users
 
 
 
-        public async Task<IEnumerable<IdentityError>> Add(RegisterDto userFromRequest)
+        public async Task<IEnumerable<IdentityError>?> Add(RegisterDto userFromRequest)
         {
             User user = new User
             {

@@ -21,5 +21,5 @@ public class User:IdentityUser
     public ICollection<Property> Properties { get; set; }=new HashSet<Property>();
     public ICollection<UserReserveProperty> Reservations { get; set; }=new HashSet<UserReserveProperty>();    
     public ICollection<UserReviewProperty> Reviews { get; set; }=new HashSet<UserReviewProperty>();
-    public Images? Img { get; set; }
+    public Image? Img { get; set; }
 }

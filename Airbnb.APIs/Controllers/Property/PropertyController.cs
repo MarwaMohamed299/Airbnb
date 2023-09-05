@@ -20,7 +20,7 @@ namespace Airbnb.APIs.Controllers.Property
         [HttpGet]
         public ActionResult<List<PropertyReadDto>> GetAll()
         {
-          return _propertyManager.GetAll().ToList();
+          return _propertyManager.GetAllProperties().ToList();
           
         }
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Airbnb.DAL;
 
-public class Rules
+public class Rule
 {
     public Guid Id { get; set; }
     public string Name { get; set; } = string.Empty;
@@ -14,6 +14,6 @@ public class Rules
 
     //navprops
     public ICollection<PropertyRule> PropertyRules { get; set; }=new HashSet<PropertyRule>();
-    public Images? Img { get; set; }
+    public Image? Img { get; set; }
 
 }

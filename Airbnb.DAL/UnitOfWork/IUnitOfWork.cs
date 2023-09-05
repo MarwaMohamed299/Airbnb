@@ -13,6 +13,6 @@ public interface IUnitOfWork
     public IImageRepo ImageRepo { get; }
     public IReservationRepo ReservationRepo { get; }
     public IReviewRepo ReviewRepo { get; }
-    public IRulesRepo RulesRepo { get; }
+    public IRuleRepo RulesRepo { get; }
     Task<int> save();
 }

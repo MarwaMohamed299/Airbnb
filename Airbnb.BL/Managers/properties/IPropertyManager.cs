@@ -10,7 +10,7 @@ namespace Airbnb.BL.Managers.properties
 {
     public interface IPropertyManager
     {
-        IEnumerable<PropertyReadDto> GetAll();
+        IEnumerable<PropertyReadDto> GetAllProperties();
         PropertyReadDto? GetPropertyById(Guid id);
         string Add(PropertyAddDto property);
         bool Update(PropertyUpdateDto property);

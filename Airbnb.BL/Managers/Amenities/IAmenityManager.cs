@@ -1,5 +1,4 @@
 ﻿using Airbnb.BL.Dtos.Amenities;
-using Airbnb.BL.Dtos.Amenities;
 
 
 namespace Airbnb.BL.Managers.Amenities

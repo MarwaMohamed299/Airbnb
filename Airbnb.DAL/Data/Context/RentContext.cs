@@ -13,12 +13,12 @@ public class RentContext : IdentityDbContext<User>
 {
     public DbSet<Property> Properties => Set<Property>();
     public DbSet<Amenity> Amenities => Set<Amenity>();
-    public DbSet<Rules> Rules => Set<Rules>();
+    public DbSet<Rule> Rules => Set<Rule>();
     public DbSet<UserReserveProperty> Reservations => Set<UserReserveProperty>();
     public DbSet<UserReviewProperty> Reviews => Set<UserReviewProperty>();
     public DbSet<PropertyAmenity> PropertyAmenities => Set<PropertyAmenity>();
     public DbSet<PropertyRule> PropertyRules => Set<PropertyRule>();
-    public DbSet<Images> Images => Set<Images>();
+    public DbSet<Image> Images => Set<Image>();
 
     public RentContext(DbContextOptions<RentContext> options) : base(options)
     {}
@@ -34,7 +34,7 @@ public class RentContext : IdentityDbContext<User>
         modelBuilder.Entity<User>().HasMany(R => R.Reviews).WithOne(U => U.User).
             HasForeignKey(fk => fk.UserId).OnDelete(DeleteBehavior.NoAction);
         modelBuilder.Entity<User>().HasOne(i => i.Img).WithOne(u => u.User)
-            .HasForeignKey<Images>(a=>a.UserId).OnDelete(DeleteBehavior.Restrict);
+            .HasForeignKey<Image>(a=>a.UserId).OnDelete(DeleteBehavior.Restrict);
 
         //Property
         modelBuilder.Entity<Property>().HasKey(k => k.Id);
@@ -55,13 +55,13 @@ public class RentContext : IdentityDbContext<User>
         modelBuilder.Entity<Amenity>().HasMany(pa => pa.PropertyAmenities).WithOne(a => a.Amenity).
             HasForeignKey(fk => fk.AmenityId).OnDelete(DeleteBehavior.Cascade);
         modelBuilder.Entity<Amenity>().HasOne(img => img.Img).WithOne(a => a.Amenity)
-            .HasForeignKey<Images>(a => a.AmenityId).OnDelete(DeleteBehavior.Cascade);
+            .HasForeignKey<Image>(a => a.AmenityId).OnDelete(DeleteBehavior.Cascade);
         //Rules
-        modelBuilder.Entity<Rules>().HasKey(k => k.Id);
-        modelBuilder.Entity<Rules>().HasMany(pr => pr.PropertyRules).WithOne(r => r.Rule).
+        modelBuilder.Entity<Rule>().HasKey(k => k.Id);
+        modelBuilder.Entity<Rule>().HasMany(pr => pr.PropertyRules).WithOne(r => r.Rule).
             HasForeignKey(fk => fk.RuleId).OnDelete(DeleteBehavior.Cascade);
-        modelBuilder.Entity<Rules>().HasOne(img => img.Img).WithOne(a => a.Rule)
-            .HasForeignKey<Images>(a => a.RuleId).OnDelete(DeleteBehavior.Cascade);
+        modelBuilder.Entity<Rule>().HasOne(img => img.Img).WithOne(a => a.Rule)
+            .HasForeignKey<Image>(a => a.RuleId).OnDelete(DeleteBehavior.Cascade);
 
         //UserReserveProperty
         modelBuilder.Entity<UserReserveProperty>().HasKey(k => new { k.PropertyId, k.CheckInDate });
@@ -75,7 +75,7 @@ public class RentContext : IdentityDbContext<User>
         modelBuilder.Entity<PropertyRule>().HasKey(k => new { k.PropertyId, k.RuleId });
 
         //images
-        modelBuilder.Entity<Images>().HasKey(k=>k.Id);
+        modelBuilder.Entity<Image>().HasKey(k=>k.Id);
 
 
         #region Seeding 

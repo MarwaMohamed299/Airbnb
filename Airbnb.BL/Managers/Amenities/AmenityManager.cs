@@ -26,7 +26,7 @@ namespace Airbnb.BL.Managers.Amenities
         }
     
 
-        public AmenityReadDto GetAmenityById(Guid id)
+        public AmenityReadDto? GetAmenityById(Guid id)
         {
             Amenity? AmenityFromDb = _amenityRepo.GetAmenityById(id);
             if (AmenityFromDb == null)

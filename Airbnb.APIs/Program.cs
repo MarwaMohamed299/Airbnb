@@ -1,6 +1,6 @@
 
 using Airbnb.BL.Managers.Amenities;
-using Airbnb.BL.Managers.Amenities;
+using Airbnb.BL.Managers.Images;
 using Airbnb.BL.Managers.properties;
 using Airbnb.BL.Managers.Users;
 using Airbnb.DAL;
@@ -59,9 +59,13 @@ namespace Airbnb.APIs
             builder.Services.AddScoped<IImageRepo, ImageRepo>();
             builder.Services.AddScoped<IReservationRepo, ReservationRepo>();
             builder.Services.AddScoped<IReviewRepo, ReviewRepo>();
-            builder.Services.AddScoped<IRulesRepo, RulesRepo>();
+            builder.Services.AddScoped<IRuleRepo, RuleRepo>();
+
             builder.Services.AddScoped<IPropertyManager, PropertyManager>();
             builder.Services.AddScoped<IAmenityManager, AmenityManager>();
+            builder.Services.AddScoped<IImagesManager, ImagesManager>();
+           // builder.Services.AddScoped<IReservationsManager, ReservationsManager>();
+
 
             var app = builder.Build();
 
