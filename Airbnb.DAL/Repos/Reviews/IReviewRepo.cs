@@ -8,4 +8,10 @@ namespace Airbnb.DAL;
 
 public interface IReviewRepo:IGenericRepo<UserReviewProperty>
 {
+    IEnumerable<UserReviewProperty> GetAllReviews();
+    UserReviewProperty? GetReviewsById(Guid Id);
+    void Add(UserReviewProperty userReviewProperty);
+    void Update(UserReviewProperty userReviewProperty);
+    void Delete(UserReviewProperty userReviewProperty);
+    int SaveChanges();
 }

@@ -20,7 +20,7 @@ public class AmenityRepo : GenericRepo<Amenity>, IAmenityRepo
         return _rentContext.Set<Amenity>().ToList();
 
     }
-
+    
     public Amenity? GetAmenityById(Guid Id)
     {
         return _rentContext.Set<Amenity>().Find();

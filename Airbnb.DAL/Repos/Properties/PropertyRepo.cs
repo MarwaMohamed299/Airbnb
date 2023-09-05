@@ -24,9 +24,9 @@ public class PropertyRepo:GenericRepo<Property>, IPropertyRepo
 
 
 
-    IEnumerable<Property> IPropertyRepo.GetAll()
+    IEnumerable<Property> IPropertyRepo.GetAllProperties()
     {
-        return _rentContext.Set<Property>();
+        return _rentContext.Set<Property>().ToList(); ;
     }
 
     Property? IPropertyRepo.GetPropertyById(Guid id)

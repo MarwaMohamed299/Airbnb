@@ -8,7 +8,7 @@ namespace Airbnb.DAL;
 
 public interface IPropertyRepo:IGenericRepo<Property>
 {
-    IEnumerable<Property> GetAll();
+    IEnumerable<Property> GetAllProperties();
    // Property? GetById(int id);
     void Add(Property property);
     void Update(Property property);
