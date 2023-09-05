@@ -15,7 +15,7 @@ public class GenericRepo<T> : IGenericRepo<T> where T : class
     {
         _rentContext = rentContext;
     }
-    public async Task<IEnumerable<T>> GetAll()
+    public async Task<IEnumerable<T>> GetAllProperties()
     {
         return await _rentContext.Set<T>().ToListAsync();
     }

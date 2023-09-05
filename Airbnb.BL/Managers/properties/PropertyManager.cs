@@ -12,9 +12,9 @@ namespace Airbnb.BL.Managers.properties
         {
             _propertyRepo = propertyRepo;
         }
-        public IEnumerable<PropertyReadDto> GetAll()
+        public IEnumerable<PropertyReadDto> GetAllProperties()
         {
-            IEnumerable<Property> propertyFromDb = _propertyRepo.GetAll();
+            IEnumerable<Property> propertyFromDb = _propertyRepo.GetAllProperties();
             return propertyFromDb.Select(p => new PropertyReadDto
             {
                 CreationDate = p.CreationDate,

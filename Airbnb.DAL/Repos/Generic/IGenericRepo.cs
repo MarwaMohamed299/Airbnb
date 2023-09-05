@@ -8,7 +8,7 @@ namespace Airbnb.DAL;
 
 public interface IGenericRepo<T> where T : class
 {
-    Task<IEnumerable<T>> GetAll();
+    Task<IEnumerable<T>> GetAllProperties();
     Task <T?> GetById(int id);  
     void Add (T item);
     void Update (T item);

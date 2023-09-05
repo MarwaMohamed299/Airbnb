@@ -10,7 +10,7 @@ namespace Airbnb.DAL;
 public class Images
 {
     public Guid Id { get; set; }
-    public string URL { get; set; }
+    public string URL { get; set; } = string.Empty;
 
     //Nav Props and FKeys
 
