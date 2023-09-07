@@ -56,7 +56,7 @@ namespace Airbnb.BL.Managers.Reservations
 
         public bool Update(ReservationsUpdateDto reservationsFromRequest)
         {
-            UserReserveProperty? reservation = _reservationsRepo.GetReservationsByIdForUpdateAndDelete(reservationsFromRequest.PropertyId, reservationsFromRequest.UserId);
+            UserReserveProperty? reservation = _reservationsRepo.GetReservationsById(reservationsFromRequest.Id);
             if (reservation == null)
             {
                 return false;
@@ -68,9 +68,9 @@ namespace Airbnb.BL.Managers.Reservations
             return true;
         }
 
-        public bool Delete(Guid propertyId, Guid userId)
+        public bool Delete(Guid Id)
         {
-            UserReserveProperty? reservation = _reservationsRepo.GetReservationsByIdForUpdateAndDelete(propertyId, userId);
+            UserReserveProperty? reservation = _reservationsRepo.GetReservationsById(Id);
             if (reservation == null)
             {
                 return false;

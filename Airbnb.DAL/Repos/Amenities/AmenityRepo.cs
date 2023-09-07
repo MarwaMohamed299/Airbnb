@@ -44,4 +44,12 @@ public class AmenityRepo : GenericRepo<Amenity>, IAmenityRepo
         _rentContext.Set<Amenity>().Remove(amenity);
     }
 
+   
+
+    
+
+   public Amenity? GetAmenityByIdForUpdateAndDelete(Guid Id, Guid PropertyId)
+    {
+        return _rentContext.Set<Amenity>().Find();
+    }
 }

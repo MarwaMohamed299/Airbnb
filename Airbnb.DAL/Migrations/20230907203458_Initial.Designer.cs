@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Airbnb.DAL.Migrations
 {
     [DbContext(typeof(RentContext))]
-    [Migration("20230902152148_Initial")]
+    [Migration("20230907203458_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -42,9 +42,41 @@ namespace Airbnb.DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Amenities");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("e48435a4-ae66-4c5e-942a-195ffa40f462"),
+                            Name = " wi-fi ",
+                            Picture = "1.jpg"
+                        },
+                        new
+                        {
+                            Id = new Guid("603ebd6a-a550-473c-811e-54386a452d0b"),
+                            Name = " Conditioner ",
+                            Picture = "2.jpg"
+                        },
+                        new
+                        {
+                            Id = new Guid("55cf6efe-a8fe-4e55-9eb9-74dabfc5be80"),
+                            Name = " Iron ",
+                            Picture = "3.jpg"
+                        },
+                        new
+                        {
+                            Id = new Guid("f4b99885-98e9-4811-ab36-2519943de44e"),
+                            Name = " Swimming Pool ",
+                            Picture = "4.jpg"
+                        },
+                        new
+                        {
+                            Id = new Guid("9e654961-c298-4cdf-b6d3-340471d57284"),
+                            Name = " washing machine",
+                            Picture = "5.jpg"
+                        });
                 });
 
-            modelBuilder.Entity("Airbnb.DAL.Images", b =>
+            modelBuilder.Entity("Airbnb.DAL.Image", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -83,6 +115,38 @@ namespace Airbnb.DAL.Migrations
                         .HasFilter("[UserId] IS NOT NULL");
 
                     b.ToTable("Images");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("772b0741-caf1-43c4-991a-0290416cf105"),
+                            URL = "1.jpg"
+                        },
+                        new
+                        {
+                            Id = new Guid("575d5dc6-5ffd-4b7c-ba11-2027246ad5bc"),
+                            URL = "2.jpg"
+                        },
+                        new
+                        {
+                            Id = new Guid("bbb1441d-e19c-45c8-9b1a-c1031b04597b"),
+                            URL = "3.jpg"
+                        },
+                        new
+                        {
+                            Id = new Guid("3955bab6-2ede-4ab0-890b-8d248c5e8134"),
+                            URL = "4.jpg"
+                        },
+                        new
+                        {
+                            Id = new Guid("416d9511-e0ce-48b2-8e66-619e8badbd26"),
+                            URL = "5.jpg"
+                        },
+                        new
+                        {
+                            Id = new Guid("65d6aeef-d876-4820-84d9-3dae3226f9e1"),
+                            URL = "6.jpg"
+                        });
                 });
 
             modelBuilder.Entity("Airbnb.DAL.Property", b =>
@@ -129,81 +193,94 @@ namespace Airbnb.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "c519065e-4bcf-4fb7-8978-d6d02ab86f6e",
+                            Id = "8fe44c35-c24f-4d7a-977e-424318162729",
                             City = "New York",
                             Country = 1,
-                            CreationDate = new DateTime(2023, 9, 2, 18, 21, 48, 343, DateTimeKind.Local).AddTicks(1579),
+                            CreationDate = new DateTime(2023, 9, 7, 23, 34, 58, 463, DateTimeKind.Local).AddTicks(8845),
                             Description = "Beautiful apartment in the heart of the city",
                             Governorate = 2,
                             NumOfPeople = 4,
                             PricePerNight = 100m,
                             PropType = 0,
-                            UserID = "f5c999d7-824f-4252-9f0c-dedb1d932065"
+                            UserID = "74e47c84-feea-4e20-9096-a552092c6f09"
                         },
                         new
                         {
-                            Id = "f2e19869-0394-4cb6-a6f7-bf91ec7a90ef",
+                            Id = "23fab38d-3a87-4e17-9b5c-97b3e9d992e2",
                             City = "Los Angeles",
                             Country = 2,
-                            CreationDate = new DateTime(2023, 9, 2, 18, 21, 48, 343, DateTimeKind.Local).AddTicks(1592),
+                            CreationDate = new DateTime(2023, 9, 7, 23, 34, 58, 463, DateTimeKind.Local).AddTicks(8865),
                             Description = "Luxurious villa with a pool and garden",
                             Governorate = 3,
                             NumOfPeople = 6,
                             PricePerNight = 200m,
                             PropType = 1,
-                            UserID = "8627c943-b0b3-415f-b872-416b875a64d6"
+                            UserID = "8145ae5c-7bf5-415d-90f6-8f2149cf73bc"
                         },
                         new
                         {
-                            Id = "8cb57124-196a-42af-aa0d-e142ff96c2e9",
+                            Id = "8cbcaf61-9cd2-4884-abc3-8f60a74bca76",
                             City = "London",
                             Country = 3,
-                            CreationDate = new DateTime(2023, 9, 2, 18, 21, 48, 343, DateTimeKind.Local).AddTicks(1605),
+                            CreationDate = new DateTime(2023, 9, 7, 23, 34, 58, 463, DateTimeKind.Local).AddTicks(8881),
                             Description = "Cozy cottage by the beach",
                             Governorate = 4,
                             NumOfPeople = 2,
                             PricePerNight = 150m,
                             PropType = 2,
-                            UserID = "26a6d6a2-2fc2-4c75-907d-d4d9430b5e76"
+                            UserID = "7924436b-7f5f-4850-bff3-0e82e9030db4"
                         },
                         new
                         {
-                            Id = "ced3d5e9-71d7-409a-ba59-2f303a43b892",
+                            Id = "afe5121f-ffa8-4298-a4c2-1c5cc8d7ee0c",
                             City = "Paris",
                             Country = 4,
-                            CreationDate = new DateTime(2023, 9, 2, 18, 21, 48, 343, DateTimeKind.Local).AddTicks(1614),
+                            CreationDate = new DateTime(2023, 9, 7, 23, 34, 58, 463, DateTimeKind.Local).AddTicks(8893),
                             Description = "Cozy studio apartment in the city center",
                             Governorate = 5,
                             NumOfPeople = 1,
                             PricePerNight = 50m,
                             PropType = 4,
-                            UserID = "8c4fefdd-75a9-497f-91a8-e8eb537135c6"
+                            UserID = "a2261d27-1adb-4441-9c8d-c7b1d76b9351"
                         },
                         new
                         {
-                            Id = "d71ed516-0896-4605-a761-eab2fe00b319",
+                            Id = "c130bc6c-b583-4995-89d1-c49a758bf189",
                             City = "Rome",
                             Country = 5,
-                            CreationDate = new DateTime(2023, 9, 2, 18, 21, 48, 343, DateTimeKind.Local).AddTicks(1624),
+                            CreationDate = new DateTime(2023, 9, 7, 23, 34, 58, 463, DateTimeKind.Local).AddTicks(8910),
                             Description = "Wooden cabin in the woods",
                             Governorate = 6,
                             NumOfPeople = 4,
                             PricePerNight = 100m,
                             PropType = 2,
-                            UserID = "8d230bcb-716a-46db-b1ab-0fba86fac50b"
+                            UserID = "97b40974-0840-4ba4-9627-0f3819eccac5"
                         },
                         new
                         {
-                            Id = "5df202b1-71dd-4d50-b6cf-24380efee546",
+                            Id = "de4f8c56-de71-40db-a34a-5df63a761abd",
                             City = "Tokyo",
                             Country = 6,
-                            CreationDate = new DateTime(2023, 9, 2, 18, 21, 48, 343, DateTimeKind.Local).AddTicks(1633),
+                            CreationDate = new DateTime(2023, 9, 7, 23, 34, 58, 463, DateTimeKind.Local).AddTicks(8925),
                             Description = "Luxurious penthouse with a view",
                             Governorate = 7,
                             NumOfPeople = 6,
                             PricePerNight = 200m,
                             PropType = 3,
-                            UserID = "ec41f813-d16c-482c-9fd9-f70b8b149486"
+                            UserID = "80e62e27-8144-4028-8fd8-b7889bcbd6fb"
+                        },
+                        new
+                        {
+                            Id = "25999634-0518-4f3c-9c31-73e022174f13",
+                            City = "Texas",
+                            Country = 6,
+                            CreationDate = new DateTime(2023, 9, 7, 23, 34, 58, 463, DateTimeKind.Local).AddTicks(8939),
+                            Description = "Luxurious penthouse with a view",
+                            Governorate = 7,
+                            NumOfPeople = 6,
+                            PricePerNight = 200m,
+                            PropType = 3,
+                            UserID = "9050c9ce-a306-42af-8a7c-1d70599ecbb0"
                         });
                 });
 
@@ -237,7 +314,7 @@ namespace Airbnb.DAL.Migrations
                     b.ToTable("PropertyRules");
                 });
 
-            modelBuilder.Entity("Airbnb.DAL.Rules", b =>
+            modelBuilder.Entity("Airbnb.DAL.Rule", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -254,6 +331,44 @@ namespace Airbnb.DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Rules");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("994d70ad-3b4d-43d7-8e5b-bb43b22c5c76"),
+                            Name = "No Smoking",
+                            Picture = "smoking.jpg"
+                        },
+                        new
+                        {
+                            Id = new Guid("6bba2c2d-d604-495b-b148-2a261effdbf6"),
+                            Name = "No Smoking",
+                            Picture = "smoking.jpg"
+                        },
+                        new
+                        {
+                            Id = new Guid("5be138b1-85e8-4f08-a047-6c0ca60054d1"),
+                            Name = "No Smoking",
+                            Picture = "smoking.jpg"
+                        },
+                        new
+                        {
+                            Id = new Guid("b96e77e3-dcb6-4267-9c88-59fcdab1ebb9"),
+                            Name = "No Smoking",
+                            Picture = "smoking.jpg"
+                        },
+                        new
+                        {
+                            Id = new Guid("dee7a757-c1b7-4893-90b3-524288cf583d"),
+                            Name = "No Smoking",
+                            Picture = "smoking.jpg"
+                        },
+                        new
+                        {
+                            Id = new Guid("d4e5f95f-1c39-4e82-b38a-ff92998ee1f0"),
+                            Name = "No Smoking",
+                            Picture = "smoking.jpg"
+                        });
                 });
 
             modelBuilder.Entity("Airbnb.DAL.User", b =>
@@ -351,12 +466,12 @@ namespace Airbnb.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "f5c999d7-824f-4252-9f0c-dedb1d932065",
+                            Id = "74e47c84-feea-4e20-9096-a552092c6f09",
                             AccessFailedCount = 0,
                             City = "New York",
-                            ConcurrencyStamp = "33cdb605-5252-4add-bd92-5b23f9d91779",
+                            ConcurrencyStamp = "3096ed45-925d-4d72-8abf-fc98c4e75686",
                             Country = 1,
-                            CreationDate = new DateTime(2023, 9, 2, 18, 21, 48, 343, DateTimeKind.Local).AddTicks(1443),
+                            CreationDate = new DateTime(2023, 9, 7, 23, 34, 58, 463, DateTimeKind.Local).AddTicks(8398),
                             Email = "john.doe@example.com",
                             EmailConfirmed = false,
                             FName = "John",
@@ -366,19 +481,19 @@ namespace Airbnb.DAL.Migrations
                             Password = "password123",
                             PhoneNumber = "123456789",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "6bbd656c-9855-45f5-8172-0385afab9610",
+                            SecurityStamp = "e2aef09a-ffb0-4e33-9907-7048a976a201",
                             TwoFactorEnabled = false,
                             UserName = "johndoe",
                             UserRole = 0
                         },
                         new
                         {
-                            Id = "8627c943-b0b3-415f-b872-416b875a64d6",
+                            Id = "8145ae5c-7bf5-415d-90f6-8f2149cf73bc",
                             AccessFailedCount = 0,
                             City = "Los Angeles",
-                            ConcurrencyStamp = "2dd87695-3456-4d25-99c6-0f9ab1cc30af",
+                            ConcurrencyStamp = "88cae276-4d57-46e0-857b-d3d7b1281f14",
                             Country = 2,
-                            CreationDate = new DateTime(2023, 9, 2, 18, 21, 48, 343, DateTimeKind.Local).AddTicks(1483),
+                            CreationDate = new DateTime(2023, 9, 7, 23, 34, 58, 463, DateTimeKind.Local).AddTicks(8430),
                             Email = "jane.doe@example.com",
                             EmailConfirmed = false,
                             FName = "Jane",
@@ -388,19 +503,19 @@ namespace Airbnb.DAL.Migrations
                             Password = "password123",
                             PhoneNumber = "987654321",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a089bc6b-5f28-42da-8b2f-b3afbcab8246",
+                            SecurityStamp = "8f13faee-ed59-4f09-9cc5-83f42184710c",
                             TwoFactorEnabled = false,
                             UserName = "janedoe",
                             UserRole = 0
                         },
                         new
                         {
-                            Id = "26a6d6a2-2fc2-4c75-907d-d4d9430b5e76",
+                            Id = "7924436b-7f5f-4850-bff3-0e82e9030db4",
                             AccessFailedCount = 0,
                             City = "London",
-                            ConcurrencyStamp = "db4d3b44-ef90-4219-bdd6-17165a9a126f",
+                            ConcurrencyStamp = "783efc90-6dbb-4a9d-bbf4-2b2b35ad74f5",
                             Country = 3,
-                            CreationDate = new DateTime(2023, 9, 2, 18, 21, 48, 343, DateTimeKind.Local).AddTicks(1496),
+                            CreationDate = new DateTime(2023, 9, 7, 23, 34, 58, 463, DateTimeKind.Local).AddTicks(8444),
                             Email = "michael.smith@example.com",
                             EmailConfirmed = false,
                             FName = "Michael",
@@ -410,19 +525,19 @@ namespace Airbnb.DAL.Migrations
                             Password = "password123",
                             PhoneNumber = "321456789",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a4dd6ad3-02b2-419e-b667-1e974b87de89",
+                            SecurityStamp = "1ad061ae-0629-4bd1-a2de-dd14dc51b4e0",
                             TwoFactorEnabled = false,
                             UserName = "michaelsmith",
                             UserRole = 0
                         },
                         new
                         {
-                            Id = "8c4fefdd-75a9-497f-91a8-e8eb537135c6",
+                            Id = "a2261d27-1adb-4441-9c8d-c7b1d76b9351",
                             AccessFailedCount = 0,
                             City = "Paris",
-                            ConcurrencyStamp = "5bad64f0-db22-4594-bd62-54707caf8b27",
+                            ConcurrencyStamp = "784bf452-2dec-4343-98e0-504b6f8e7c1c",
                             Country = 4,
-                            CreationDate = new DateTime(2023, 9, 2, 18, 21, 48, 343, DateTimeKind.Local).AddTicks(1514),
+                            CreationDate = new DateTime(2023, 9, 7, 23, 34, 58, 463, DateTimeKind.Local).AddTicks(8637),
                             Email = "david.williams@example.com",
                             EmailConfirmed = false,
                             FName = "David",
@@ -432,19 +547,19 @@ namespace Airbnb.DAL.Migrations
                             Password = "password123",
                             PhoneNumber = "765432109",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "88be0434-cb13-4ded-a475-1cc50d9684bd",
+                            SecurityStamp = "59e54929-624b-4fdf-ba2f-47661a77721b",
                             TwoFactorEnabled = false,
                             UserName = "davidwilliams",
                             UserRole = 0
                         },
                         new
                         {
-                            Id = "8d230bcb-716a-46db-b1ab-0fba86fac50b",
+                            Id = "97b40974-0840-4ba4-9627-0f3819eccac5",
                             AccessFailedCount = 0,
                             City = "Rome",
-                            ConcurrencyStamp = "c8323fbb-c5a4-4158-9f28-c03e1c0527d4",
+                            ConcurrencyStamp = "6f07a583-c5d2-4a9c-834d-d596c5593185",
                             Country = 5,
-                            CreationDate = new DateTime(2023, 9, 2, 18, 21, 48, 343, DateTimeKind.Local).AddTicks(1541),
+                            CreationDate = new DateTime(2023, 9, 7, 23, 34, 58, 463, DateTimeKind.Local).AddTicks(8656),
                             Email = "elizabeth.brown@example.com",
                             EmailConfirmed = false,
                             FName = "Elizabeth",
@@ -454,19 +569,19 @@ namespace Airbnb.DAL.Migrations
                             Password = "password123",
                             PhoneNumber = "543210987",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "0b672e65-c449-4e4e-9d6c-c4c0b089ff20",
+                            SecurityStamp = "a003463e-1566-4cc7-ab65-e3a64f0e6d03",
                             TwoFactorEnabled = false,
                             UserName = "elizabethbrown",
                             UserRole = 1
                         },
                         new
                         {
-                            Id = "ec41f813-d16c-482c-9fd9-f70b8b149486",
+                            Id = "80e62e27-8144-4028-8fd8-b7889bcbd6fb",
                             AccessFailedCount = 0,
                             City = "Tokyo",
-                            ConcurrencyStamp = "545a1d5e-8882-408d-b98e-17c6e41291a9",
+                            ConcurrencyStamp = "d5b75740-1f3b-42ec-8d71-48368d84fd4f",
                             Country = 6,
-                            CreationDate = new DateTime(2023, 9, 2, 18, 21, 48, 343, DateTimeKind.Local).AddTicks(1559),
+                            CreationDate = new DateTime(2023, 9, 7, 23, 34, 58, 463, DateTimeKind.Local).AddTicks(8686),
                             Email = "thomas.anderson@example.com",
                             EmailConfirmed = false,
                             FName = "Thomas",
@@ -476,17 +591,62 @@ namespace Airbnb.DAL.Migrations
                             Password = "password123",
                             PhoneNumber = "987654321",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "36c328c4-b532-44e4-8284-783847cee2d6",
+                            SecurityStamp = "6020b8f2-7a2b-4f36-88e8-47fc37fc35ed",
                             TwoFactorEnabled = false,
                             UserName = "thomasanderson",
+                            UserRole = 0
+                        },
+                        new
+                        {
+                            Id = "9050c9ce-a306-42af-8a7c-1d70599ecbb0",
+                            AccessFailedCount = 0,
+                            City = "Boston",
+                            ConcurrencyStamp = "17eb6f8d-4716-4793-9121-d2bb055e3fc4",
+                            Country = 6,
+                            CreationDate = new DateTime(2023, 9, 7, 23, 34, 58, 463, DateTimeKind.Local).AddTicks(8703),
+                            Email = "Jasmine.anderson@example.com",
+                            EmailConfirmed = false,
+                            FName = "Jasmin",
+                            Governorate = 2,
+                            LName = "Anderson",
+                            LockoutEnabled = false,
+                            Password = "password123",
+                            PhoneNumber = "987654321",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "9abe5166-f08c-4bf8-9609-42590981bafe",
+                            TwoFactorEnabled = false,
+                            UserName = "jasmineanderson",
+                            UserRole = 0
+                        },
+                        new
+                        {
+                            Id = "eccf057b-0485-4380-8bdd-e02a4c64e2e7",
+                            AccessFailedCount = 0,
+                            City = "Texas",
+                            ConcurrencyStamp = "55e3b399-88ba-4b76-a952-c04d35d7c7f0",
+                            Country = 2,
+                            CreationDate = new DateTime(2023, 9, 7, 23, 34, 58, 463, DateTimeKind.Local).AddTicks(8727),
+                            Email = "sara.zuckerberg@example.com",
+                            EmailConfirmed = false,
+                            FName = "Sara",
+                            Governorate = 7,
+                            LName = "zukerberg",
+                            LockoutEnabled = false,
+                            Password = "password143",
+                            PhoneNumber = "987654321",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "85515acd-55bf-4527-965d-509b65ffe60d",
+                            TwoFactorEnabled = false,
+                            UserName = "sara.zuckerberg",
                             UserRole = 0
                         });
                 });
 
             modelBuilder.Entity("Airbnb.DAL.UserReserveProperty", b =>
                 {
-                    b.Property<string>("PropertyId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CheckInDate")
                         .HasColumnType("datetime2");
@@ -494,15 +654,55 @@ namespace Airbnb.DAL.Migrations
                     b.Property<DateTime>("CheckOutDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("PropertyId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("PropertyId", "CheckInDate");
+                    b.HasKey("Id");
+
+                    b.HasIndex("PropertyId");
 
                     b.HasIndex("UserId");
 
                     b.ToTable("Reservations");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("c022398f-dbe6-4302-bf7c-ea9a5b6fa003"),
+                            CheckInDate = new DateTime(2023, 9, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CheckOutDate = new DateTime(2023, 9, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            PropertyId = "afe5121f-ffa8-4298-a4c2-1c5cc8d7ee0c",
+                            UserId = "80e62e27-8144-4028-8fd8-b7889bcbd6fb"
+                        },
+                        new
+                        {
+                            Id = new Guid("b57580ce-37ab-4e5a-9452-a3b6f151c4af"),
+                            CheckInDate = new DateTime(2023, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CheckOutDate = new DateTime(2023, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            PropertyId = "25999634-0518-4f3c-9c31-73e022174f13",
+                            UserId = "7924436b-7f5f-4850-bff3-0e82e9030db4"
+                        },
+                        new
+                        {
+                            Id = new Guid("00e33fe9-4201-4d89-ae0b-1db2e6c36652"),
+                            CheckInDate = new DateTime(2023, 9, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CheckOutDate = new DateTime(2023, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            PropertyId = "de4f8c56-de71-40db-a34a-5df63a761abd",
+                            UserId = "8145ae5c-7bf5-415d-90f6-8f2149cf73bc"
+                        },
+                        new
+                        {
+                            Id = new Guid("6b737101-d5c8-4d67-9ed5-290f6a991d2e"),
+                            CheckInDate = new DateTime(2023, 1, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CheckOutDate = new DateTime(2023, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            PropertyId = "23fab38d-3a87-4e17-9b5c-97b3e9d992e2",
+                            UserId = "97b40974-0840-4ba4-9627-0f3819eccac5"
+                        });
                 });
 
             modelBuilder.Entity("Airbnb.DAL.UserReviewProperty", b =>
@@ -521,6 +721,38 @@ namespace Airbnb.DAL.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Reviews");
+
+                    b.HasData(
+                        new
+                        {
+                            PropertyId = "23fab38d-3a87-4e17-9b5c-97b3e9d992e2",
+                            UserId = "7924436b-7f5f-4850-bff3-0e82e9030db4",
+                            Rating = 2.3f
+                        },
+                        new
+                        {
+                            PropertyId = "8cbcaf61-9cd2-4884-abc3-8f60a74bca76",
+                            UserId = "8145ae5c-7bf5-415d-90f6-8f2149cf73bc",
+                            Rating = 1.2f
+                        },
+                        new
+                        {
+                            PropertyId = "c130bc6c-b583-4995-89d1-c49a758bf189",
+                            UserId = "a2261d27-1adb-4441-9c8d-c7b1d76b9351",
+                            Rating = 4.5f
+                        },
+                        new
+                        {
+                            PropertyId = "afe5121f-ffa8-4298-a4c2-1c5cc8d7ee0c",
+                            UserId = "97b40974-0840-4ba4-9627-0f3819eccac5",
+                            Rating = 4.5f
+                        },
+                        new
+                        {
+                            PropertyId = "de4f8c56-de71-40db-a34a-5df63a761abd",
+                            UserId = "80e62e27-8144-4028-8fd8-b7889bcbd6fb",
+                            Rating = 4.5f
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -656,11 +888,11 @@ namespace Airbnb.DAL.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Airbnb.DAL.Images", b =>
+            modelBuilder.Entity("Airbnb.DAL.Image", b =>
                 {
                     b.HasOne("Airbnb.DAL.Amenity", "Amenity")
                         .WithOne("Img")
-                        .HasForeignKey("Airbnb.DAL.Images", "AmenityId")
+                        .HasForeignKey("Airbnb.DAL.Image", "AmenityId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Airbnb.DAL.Property", "Property")
@@ -668,14 +900,14 @@ namespace Airbnb.DAL.Migrations
                         .HasForeignKey("PropertyId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Airbnb.DAL.Rules", "Rule")
+                    b.HasOne("Airbnb.DAL.Rule", "Rule")
                         .WithOne("Img")
-                        .HasForeignKey("Airbnb.DAL.Images", "RuleId")
+                        .HasForeignKey("Airbnb.DAL.Image", "RuleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Airbnb.DAL.User", "User")
                         .WithOne("Img")
-                        .HasForeignKey("Airbnb.DAL.Images", "UserId")
+                        .HasForeignKey("Airbnb.DAL.Image", "UserId")
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Amenity");
@@ -725,7 +957,7 @@ namespace Airbnb.DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Airbnb.DAL.Rules", "Rule")
+                    b.HasOne("Airbnb.DAL.Rule", "Rule")
                         .WithMany("PropertyRules")
                         .HasForeignKey("RuleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -845,7 +1077,7 @@ namespace Airbnb.DAL.Migrations
                     b.Navigation("Reviews");
                 });
 
-            modelBuilder.Entity("Airbnb.DAL.Rules", b =>
+            modelBuilder.Entity("Airbnb.DAL.Rule", b =>
                 {
                     b.Navigation("Img");
 

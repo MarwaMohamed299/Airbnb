@@ -16,5 +16,5 @@ public interface IRuleRepo:IGenericRepo<Rule>
     void Delete(Rule rules);
 
     int SaveChanges();
-    Rule? GetRulesByIdForUpdateAndDelete(Guid propertyId, Guid userId);
+    Rule? GetRulesByIdForUpdateAndDelete(Guid propertyId, Guid Id);
 }

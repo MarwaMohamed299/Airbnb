@@ -10,7 +10,5 @@ public interface IAmenityRepo:IGenericRepo<Amenity>
     void Update(Amenity amenity);
     void Delete(Amenity amenity);
     int SaveChanges();
-
-
-
+    Amenity? GetAmenityByIdForUpdateAndDelete(Guid Id, Guid propertyId);
 }

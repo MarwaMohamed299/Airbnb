@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -64,7 +65,7 @@ public class RentContext : IdentityDbContext<User>
             .HasForeignKey<Image>(a => a.RuleId).OnDelete(DeleteBehavior.Cascade);
 
         //UserReserveProperty
-        modelBuilder.Entity<UserReserveProperty>().HasKey(k => new { k.PropertyId, k.CheckInDate });
+        modelBuilder.Entity<UserReserveProperty>().HasKey(k => new { k.Id });
         //UserReviewProperty
         modelBuilder.Entity<UserReviewProperty>().HasKey(k => new {k.PropertyId, k.UserId });
 
@@ -173,6 +174,36 @@ public class RentContext : IdentityDbContext<User>
         City = "Tokyo",
         CreationDate = DateTime.Now
     },
+      new User
+    {
+        Id = Guid.NewGuid().ToString(),
+        UserRole = Role.Guest,
+        FName = "Jasmin",
+        LName = "Anderson",
+        Email = "Jasmine.anderson@example.com",
+        Password = "password123",
+        UserName = "jasmineanderson",
+        PhoneNumber = "987654321",
+        Country = 6,
+        Governorate = 2,
+        City = "Boston",
+        CreationDate = DateTime.Now
+    },
+        new User
+    {
+        Id = Guid.NewGuid().ToString(),
+        UserRole = Role.Guest,
+        FName = "Sara",
+        LName = "zukerberg",
+        Email = "sara.zuckerberg@example.com",
+        Password = "password143",
+        UserName = "sara.zuckerberg",
+        PhoneNumber = "987654321",
+        Country = 2,
+        Governorate = 7,
+        City = "Texas",
+        CreationDate = DateTime.Now
+    },
     };
 
         var properties = new List<Property>
@@ -255,10 +286,201 @@ public class RentContext : IdentityDbContext<User>
         Description = "Luxurious penthouse with a view",
         UserID =(users[5].Id)
     },
+      new Property
+    {
+        Id = Guid.NewGuid().ToString(),
+        PropType = PropType.Duplex,
+        Country = 6,
+        Governorate = 7,
+        City = "Texas",
+        CreationDate = DateTime.Now,
+        NumOfPeople = 6,
+        PricePerNight = 200,
+        Description = "Luxurious penthouse with a view",
+        UserID =(users[6].Id)
+    },
     // Add more properties here...
 };
+        var Amenities = new List<Amenity>
+        {
+            new Amenity
+            {
+               Id = Guid.NewGuid(),
+               Name = " wi-fi ",
+               Picture = "1.jpg"
+
+            },
+            new Amenity
+            {
+               Id = Guid.NewGuid(),
+               Name = " Conditioner ",
+               Picture = "2.jpg"
+
+            },new Amenity
+            {
+               Id = Guid.NewGuid(),
+               Name = " Iron ",
+               Picture = "3.jpg"
+
+            },new Amenity
+            {
+               Id = Guid.NewGuid(),
+               Name = " Swimming Pool ",
+               Picture = "4.jpg"
+
+            },new Amenity
+            {
+               Id = Guid.NewGuid(),
+               Name = " washing machine",
+               Picture = "5.jpg"
+
+            },
+        };
+        var Images = new List<Image>
+            {
+                new Image
+                {
+                    Id = Guid.NewGuid(),
+                    URL = "1.jpg"
+                },
+                  new Image
+                {
+                    Id = Guid.NewGuid(),
+                    URL = "2.jpg"
+                },  new Image
+                {
+                    Id = Guid.NewGuid(),
+                    URL = "3.jpg"
+                },  new Image
+                {
+                    Id = Guid.NewGuid(),
+                    URL = "4.jpg"
+                },  new Image
+                {
+                    Id = Guid.NewGuid(),
+                    URL = "5.jpg"
+                },  new Image
+                {
+                    Id = Guid.NewGuid(),
+                    URL = "6.jpg"
+                },
+            };
+        var Reservations = new List<UserReserveProperty>
+            {
+            new UserReserveProperty
+            {
+                 Id = Guid.NewGuid(),
+                CheckInDate = new DateTime(2023, 9, 10),
+                CheckOutDate = new DateTime(2023, 9, 15),
+                UserId = (users[5].Id),
+                PropertyId = (properties[3].Id)
+                
+            },   new UserReserveProperty
+            {
+                 Id = Guid.NewGuid(),
+                CheckInDate = new DateTime(2023, 5, 10),
+                CheckOutDate = new DateTime(2023, 8, 15),
+                UserId = (users[2].Id),
+                PropertyId = (properties[6].Id)
+
+            },   new UserReserveProperty
+            {
+                 Id = Guid.NewGuid(),
+                CheckInDate = new DateTime(2023, 9, 10),
+                CheckOutDate = new DateTime(2023, 7, 22),
+                UserId = (users[1].Id),
+                PropertyId = (properties[5].Id)
+
+            },   new UserReserveProperty
+            {
+                 Id = Guid.NewGuid(),
+                CheckInDate = new DateTime(2023, 1, 10),
+                CheckOutDate = new DateTime(2023, 12, 15),
+                UserId = (users[4].Id),
+                PropertyId = (properties[1].Id)
+
+            },   
+};
+        var Reviews = new List<UserReviewProperty>
+        {
+            new UserReviewProperty
+        {
+                Rating = 2.3f,
+                UserId = (users[2].Id),
+                PropertyId = (properties[1].Id),
+         },     new UserReviewProperty
+        {
+                Rating = 1.2f,
+                UserId = (users[1].Id),
+                PropertyId = (properties[2].Id),
+         },     new UserReviewProperty
+        {
+                Rating = 4.5f,
+                UserId = (users[3].Id),
+                PropertyId = (properties[4].Id),
+         },     new UserReviewProperty
+        {
+                Rating = 4.5f,
+                UserId = (users[4].Id),
+                PropertyId = (properties[3].Id),
+         },     new UserReviewProperty
+        {
+                Rating = 4.5f,
+                UserId = (users[5].Id),
+                PropertyId = (properties[5].Id),
+         },
+
+    };
+        var Rules = new List<Rule>
+        {
+            new Rule{
+            Id = Guid.NewGuid(),
+            Name = "No Smoking",
+            Picture = "smoking.jpg"
+            },
+             new Rule{
+            Id = Guid.NewGuid(),
+            Name = "No Smoking",
+            Picture = "smoking.jpg"
+            },
+              new Rule{
+            Id = Guid.NewGuid(),
+            Name = "No Smoking",
+            Picture = "smoking.jpg"
+            },
+               new Rule{
+            Id = Guid.NewGuid(),
+            Name = "No Smoking",
+            Picture = "smoking.jpg"
+            },
+                new Rule{
+            Id = Guid.NewGuid(),
+            Name = "No Smoking",
+            Picture = "smoking.jpg"
+            },
+                 new Rule{
+            Id = Guid.NewGuid(),
+            Name = "No Smoking",
+            Picture = "smoking.jpg"
+            }
+                 };
+
+
+
+
         modelBuilder.Entity<Property>().HasData(properties);
         modelBuilder.Entity<User>().HasData(users);
+        modelBuilder.Entity<Amenity>().HasData(Amenities);
+        modelBuilder.Entity<Image>().HasData(Images);
+        modelBuilder.Entity<UserReserveProperty>().HasData(Reservations);
+        modelBuilder.Entity<UserReviewProperty>().HasData(Reviews);
+        modelBuilder.Entity<Rule>().HasData(Rules);
+
+
+
+
+
+
     }
     #endregion
 }

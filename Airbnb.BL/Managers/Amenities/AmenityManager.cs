@@ -56,7 +56,7 @@ namespace Airbnb.BL.Managers.Amenities
         }
         public bool Update(AmenityUpdateDto amenityFromRequest)
         {
-            Amenity? amenity = _amenityRepo.GetAmenityById(amenityFromRequest.Id);
+            Amenity? amenity = _amenityRepo.GetAmenityByIdForUpdateAndDelete(amenityFromRequest.Id , amenityFromRequest.PropertyId);
             if (amenityFromRequest == null)
             {
                 return false;
@@ -68,9 +68,9 @@ namespace Airbnb.BL.Managers.Amenities
             return true;
         }
 
-        public bool Delete(Guid Id)
+        public bool Delete(Guid Id , Guid PropertyId)
         {
-            Amenity? amenity = _amenityRepo.GetAmenityById(Id);
+            Amenity? amenity = _amenityRepo.GetAmenityByIdForUpdateAndDelete(Id , PropertyId);
             if (amenity == null)
             {
                 return false;

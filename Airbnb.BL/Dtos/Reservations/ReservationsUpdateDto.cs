@@ -12,5 +12,6 @@ namespace Airbnb.BL.Dtos.Reservations
         public DateTime CheckOutDate { get; set; }
         public Guid UserId { get; set; }
         public Guid PropertyId { get; set; } 
+        public Guid Id { get; set; }
     }
 }
