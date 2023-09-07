@@ -45,4 +45,9 @@ public class ReservationRepo : GenericRepo<UserReserveProperty>, IReservationRep
     {
         return _rentContext.SaveChanges();
     }
+
+   public UserReserveProperty? GetReservationsByIdForUpdateAndDelete(Guid PropertyId, Guid userId)
+    {
+        return _rentContext.Set<UserReserveProperty>().Find();
+    }
 }

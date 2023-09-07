@@ -11,8 +11,8 @@ namespace Airbnb.BL.Managers.Rules
     {
         IEnumerable<RulesReadDto> GetAllRules();
         RulesReadDto? GetRulesById(Guid Id);
-        string Add(RulesReadDto rules);
+        string Add(RulesAddDto rules);
         bool Update(RulesUpdateDto rules);
-        bool Delete(Guid Id);
+        bool Delete(Guid UserId,Guid PropertyId);
     }
 }

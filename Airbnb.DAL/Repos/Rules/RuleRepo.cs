@@ -41,4 +41,10 @@ public class RuleRepo:GenericRepo<Rule>, IRuleRepo
     {
         return _rentContext.SaveChanges();
     }
+
+   public Rule? GetRulesByIdForUpdateAndDelete(Guid propertyId, Guid userId)
+    {
+        return _rentContext.Set<Rule>().Find();
+
+    }
 }

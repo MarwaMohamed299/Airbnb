@@ -13,6 +13,6 @@ namespace Airbnb.BL.Managers.Reservations
         ReservationsReadDto? GetReservationsById(Guid Id);
         string Add(ReservationsAddDto reservations);
         bool Update(ReservationsUpdateDto reservations);
-        bool Delete(Guid Id);
+        bool Delete(Guid propertyId, Guid userId);
     }
 }

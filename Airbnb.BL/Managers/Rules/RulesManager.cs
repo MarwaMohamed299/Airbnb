@@ -1,4 +1,5 @@
-﻿using Airbnb.BL.Dtos.Rules;
+﻿using Airbnb.BL.Dtos.Reviews;
+using Airbnb.BL.Dtos.Rules;
 using Airbnb.DAL;
 using System;
 using System.Collections.Generic;
@@ -44,21 +45,40 @@ namespace Airbnb.BL.Managers.Rules
             };
         }
 
-        string IRulesManager.Add(RulesReadDto rules)
+        public string Add(RulesAddDto rulesFromRequest)
         {
-            throw new NotImplementedException();
+            Rule? rules = new Rule
+            {
+                 Name=rulesFromRequest.Name,
+                 Picture = rulesFromRequest.Picture
+            };
+            _ruleRepo.Add(rules);
+            _ruleRepo.SaveChanges();
+            return rules.Id.ToString();
         }
 
-        bool IRulesManager.Delete(Guid Id)
+        public bool Update(RulesUpdateDto rulesFromRequest)
         {
-            throw new NotImplementedException();
+            Rule? rules = _ruleRepo.GetRulesByIdForUpdateAndDelete(rulesFromRequest.PropertyId, rulesFromRequest.UserId);
+            rules.Name = rulesFromRequest.Name;
+            rules.Picture = rulesFromRequest.Picture;
+            _ruleRepo.Update(rules);
+            _ruleRepo.SaveChanges();
+            return true;
+        }
+        public bool Delete(Guid propertyId, Guid userId)
+        {
+           Rule? rules = _ruleRepo.GetRulesByIdForUpdateAndDelete(propertyId, userId);
+            if (rules == null)
+            {
+                return false;
+            }
+            _ruleRepo.Delete(rules);
+            _ruleRepo.SaveChanges();
+            return true;
         }
 
-       
-
-        bool IRulesManager.Update(RulesUpdateDto rules)
-        {
-            throw new NotImplementedException();
-        }
+      
     }
 }
+

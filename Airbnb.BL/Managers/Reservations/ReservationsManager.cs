@@ -42,22 +42,44 @@ namespace Airbnb.BL.Managers.Reservations
         }
         public string Add(ReservationsAddDto reservationsFromRequest)                      //Add
         {
-            //UserReserveProperty? reservation = _reservationsRepo.GetReservationsById(ReservationsAddDto.Id);
-            throw new NotImplementedException();
+            UserReserveProperty? userReserveProperty = new UserReserveProperty
+            {
+                CheckInDate = reservationsFromRequest.CheckInDate,
+                CheckOutDate = reservationsFromRequest.CheckOutDate
 
+            };
+            _reservationsRepo.Add(userReserveProperty);
+            _reservationsRepo.SaveChanges();
+            return reservationsFromRequest.UserId;
         }
-        public bool Update(ReservationsUpdateDto reservations)              //Update
+     
+
+        public bool Update(ReservationsUpdateDto reservationsFromRequest)
         {
-            throw new NotImplementedException();
+            UserReserveProperty? reservation = _reservationsRepo.GetReservationsByIdForUpdateAndDelete(reservationsFromRequest.PropertyId, reservationsFromRequest.UserId);
+            if (reservation == null)
+            {
+                return false;
+            }
+            reservation.CheckInDate = reservationsFromRequest.CheckInDate;
+            reservation.CheckOutDate = reservationsFromRequest.CheckOutDate;
+            _reservationsRepo.Update(reservation);
+            _reservationsRepo.SaveChanges();
+            return true;
         }
 
-        public bool Delete(Guid Id)                                         //Delete
+        public bool Delete(Guid propertyId, Guid userId)
         {
-            throw new NotImplementedException();
+            UserReserveProperty? reservation = _reservationsRepo.GetReservationsByIdForUpdateAndDelete(propertyId, userId);
+            if (reservation == null)
+            {
+                return false;
+            }
+            _reservationsRepo.Delete(reservation);
+            _reservationsRepo.SaveChanges();
+            return true;
         }
 
-       
 
-      
     }
 }

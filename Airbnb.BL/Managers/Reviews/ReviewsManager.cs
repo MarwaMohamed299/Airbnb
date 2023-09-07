@@ -3,6 +3,7 @@ using Airbnb.DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -38,21 +39,39 @@ namespace Airbnb.BL.Managers.Reviews
             };
         }
 
-        string IReviewsManager.Add(ReviewsAddDto reviews)
+       public string Add(ReviewsAddDto reviewsFromRequest)
         {
-            throw new NotImplementedException();
+            UserReviewProperty? reviews = new UserReviewProperty
+            {
+                Rating = reviewsFromRequest.Rating
+            };
+            _reviewsRepo.Add(reviews);
+            _reviewsRepo.SaveChanges();
+            return reviews.UserId;
         }
 
-        bool IReviewsManager.Delete(Guid Id)
+         public bool Update(ReviewsUpdateDto reviewsFromRequest)
         {
-            throw new NotImplementedException();
+            UserReviewProperty? reviews = _reviewsRepo.GetReviewsByIdForUpdateAndDelete( reviewsFromRequest.PropertyId, reviewsFromRequest.UserId);
+            reviews.Rating = reviewsFromRequest.Rating;
+            _reviewsRepo.Update(reviews);
+            _reviewsRepo.SaveChanges();
+            return true;
+        }
+        public bool Delete(Guid propertyId, Guid userId)
+        {
+            UserReviewProperty? reviews = _reviewsRepo.GetReviewsByIdForUpdateAndDelete(propertyId, userId);
+            if (reviews == null)
+            {
+                return false;
+            }
+            _reviewsRepo.Delete(reviews);
+            _reviewsRepo.SaveChanges();
+            return true;
         }
 
     
 
-        bool IReviewsManager.Update(ReviewsUpdateDto reviews)
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }

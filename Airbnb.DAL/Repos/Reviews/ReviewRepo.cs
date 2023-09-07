@@ -43,4 +43,9 @@ public class ReviewRepo:GenericRepo<UserReviewProperty>,IReviewRepo
     {
         return _rentContext.SaveChanges();
     }
+
+    public UserReviewProperty? GetReviewsByIdForUpdateAndDelete(Guid PropertyId, Guid UserId)
+    {
+        return _rentContext.Set<UserReviewProperty>().Find();
+    }
 }
