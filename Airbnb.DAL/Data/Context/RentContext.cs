@@ -66,6 +66,7 @@ public class RentContext : IdentityDbContext<User>
 
         //UserReserveProperty
         modelBuilder.Entity<UserReserveProperty>().HasKey(k => new { k.Id });
+        
         //UserReviewProperty
         modelBuilder.Entity<UserReviewProperty>().HasKey(k => new {k.PropertyId, k.UserId ,k.Id});
 
