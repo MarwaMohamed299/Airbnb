@@ -21,6 +21,7 @@ namespace Airbnb.BL.Managers.Reservations
             IEnumerable<UserReserveProperty> reservationsFromDb = _reservationsRepo.GetAllReservations();
             return reservationsFromDb.Select(r => new ReservationsReadDto
             {
+                Id=r.Id,
                 CheckInDate = r.CheckInDate,
                 CheckOutDate = r.CheckOutDate
             });
@@ -36,6 +37,7 @@ namespace Airbnb.BL.Managers.Reservations
             }
             return new ReservationsReadDto
             {
+                Id = reservationsFromDb.Id,
                 CheckInDate = reservationsFromDb.CheckInDate,
                 CheckOutDate = reservationsFromDb.CheckOutDate
             };
@@ -44,6 +46,8 @@ namespace Airbnb.BL.Managers.Reservations
         {
             UserReserveProperty? userReserveProperty = new UserReserveProperty
             {
+                UserId=reservationsFromRequest.UserId,
+                PropertyId=reservationsFromRequest.PropertyId,
                 CheckInDate = reservationsFromRequest.CheckInDate,
                 CheckOutDate = reservationsFromRequest.CheckOutDate
 
@@ -79,6 +83,7 @@ namespace Airbnb.BL.Managers.Reservations
             _reservationsRepo.SaveChanges();
             return true;
         }
+       
 
 
     }

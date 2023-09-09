@@ -27,7 +27,7 @@ namespace Airbnb.APIs.Controllers.Property
 
         [HttpGet]
         [Route("{id}")]
-        public ActionResult<PropertyReadDto> GetPropertyById(Guid id)
+        public ActionResult<PropertyReadDto> GetPropertyById(string id)
         {
               PropertyReadDto? property = _propertyManager.GetPropertyById(id);
             if (property is null)
@@ -60,7 +60,7 @@ namespace Airbnb.APIs.Controllers.Property
         }
         [HttpDelete]
         [Route("{id}")]
-        public ActionResult Delete (Guid id)
+        public ActionResult Delete (string id)
         {
             var isFound = _propertyManager.Delete(id);
             if(!isFound)

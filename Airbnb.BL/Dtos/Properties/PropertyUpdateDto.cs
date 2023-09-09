@@ -9,7 +9,7 @@ namespace Airbnb.BL.Dtos.Properties
 {
     public class PropertyUpdateDto
     {
-        public Guid Id { get;}
+        public string Id { get; set; }
         public PropType PropType { get; set; }
         public string UserID { get; set; } = string.Empty;
 

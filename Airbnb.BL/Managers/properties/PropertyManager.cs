@@ -17,6 +17,7 @@ namespace Airbnb.BL.Managers.properties
             IEnumerable<Property> propertyFromDb = _propertyRepo.GetAllProperties();
             return propertyFromDb.Select(p => new PropertyReadDto
             {
+                Id=p.Id,
                 CreationDate = p.CreationDate,
                 PropType = p.PropType,
                 UserID=p.UserID,
@@ -30,7 +31,7 @@ namespace Airbnb.BL.Managers.properties
             });
         }
 
-        public PropertyReadDto? GetPropertyById(Guid id)
+        public PropertyReadDto? GetPropertyById(string id)
         {
             Property? propertyFromDb = _propertyRepo.GetPropertyById( id);
             if (propertyFromDb ==null)
@@ -39,6 +40,7 @@ namespace Airbnb.BL.Managers.properties
             }
             return new PropertyReadDto
             {
+                Id=propertyFromDb.Id.ToString(),
                 PropType = propertyFromDb.PropType,
                 UserID = propertyFromDb.UserID,
                 Country = propertyFromDb.Country,
@@ -91,7 +93,7 @@ namespace Airbnb.BL.Managers.properties
             return true;
         }
 
-        public bool Delete(Guid id)
+        public bool Delete(string id)
         {
             Property? property = _propertyRepo.GetPropertyById(id);
               if (property == null)

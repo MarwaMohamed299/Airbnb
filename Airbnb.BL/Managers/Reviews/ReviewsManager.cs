@@ -23,7 +23,10 @@ namespace Airbnb.BL.Managers.Reviews
             IEnumerable<UserReviewProperty> reviewsFromDb = _reviewsRepo.GetAllReviews();
             return reviewsFromDb.Select(r => new ReviewsReadDto
             {
-                Rating = r.Rating
+                Rating = r.Rating,
+                Id=r.Id,
+                UserId=r.UserId,
+                PropertyId=r.PropertyId
             });
         }
 
@@ -40,36 +43,7 @@ namespace Airbnb.BL.Managers.Reviews
             };
         }
 
-        //public string Add(ReviewsAddDto reviewsFromRequest)
-        // {
-        //     UserReviewProperty? reviews = new UserReviewProperty
-        //     {
-        //         Rating = reviewsFromRequest.Rating
-        //     };
-        //     _reviewsRepo.Add(reviews);
-        //     _reviewsRepo.SaveChanges();
-        //     return reviews.UserId;
-        // }
 
-        //  public bool Update(ReviewsUpdateDto reviewsFromRequest)
-        // {
-        //     UserReviewProperty? reviews = _reviewsRepo.GetReviewsByIdForUpdateAndDelete( reviewsFromRequest.PropertyId, reviewsFromRequest.UserId);
-        //     reviews.Rating = reviewsFromRequest.Rating;
-        //     _reviewsRepo.Update(reviews);
-        //     _reviewsRepo.SaveChanges();
-        //     return true;
-        // }
-        // public bool Delete(Guid propertyId, Guid userId)
-        // {
-        //     UserReviewProperty? reviews = _reviewsRepo.GetReviewsByIdForUpdateAndDelete(propertyId, userId);
-        //     if (reviews == null)
-        //     {
-        //         return false;
-        //     }
-        //     _reviewsRepo.Delete(reviews);
-        //     _reviewsRepo.SaveChanges();
-        //     return true;
-        // }
 
 
         public string Add(ReviewsAddDto reviewsFromRequest)

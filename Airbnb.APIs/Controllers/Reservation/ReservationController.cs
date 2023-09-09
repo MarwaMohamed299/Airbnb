@@ -66,6 +66,6 @@ namespace Airbnb.APIs.Controllers.Reservation
             }
             return NoContent();
         }
-
+     
     }
 }

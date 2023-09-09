@@ -29,7 +29,7 @@ public class PropertyRepo:GenericRepo<Property>, IPropertyRepo
         return _rentContext.Set<Property>().ToList(); ;
     }
 
-    Property? IPropertyRepo.GetPropertyById(Guid id)
+    Property? IPropertyRepo.GetPropertyById(string id)
     {
         return _rentContext.Set<Property>().Find(id);
     }

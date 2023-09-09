@@ -4,6 +4,7 @@ namespace Airbnb
 {
     public class PropertyReadDto
     {
+        public string Id { get; set; } 
         public PropType PropType { get; set; }
         public string UserID { get; set; } = string.Empty;
         public int Country { get; set; }

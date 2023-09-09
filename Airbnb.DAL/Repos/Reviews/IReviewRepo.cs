@@ -15,5 +15,5 @@ public interface IReviewRepo:IGenericRepo<UserReviewProperty>
     void Update(UserReviewProperty userReviewProperty);
     void Delete(UserReviewProperty userReviewProperty);
     int SaveChanges();
-    UserReviewProperty? GetReviewsByIdForUpdateAndDelete(string propertyId, string userId, Guid id);
+    UserReviewProperty? GetReviewsByIdForUpdateAndDelete(string propertyId, string userId, Guid Id);
 }
