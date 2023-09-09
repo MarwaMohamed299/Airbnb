@@ -59,9 +59,9 @@ namespace Airbnb.APIs.Controllers.Rule
         }
         [HttpDelete]
         [Route("{id}")]
-        public ActionResult Delete(Guid UserId, Guid PropertyId)
+        public ActionResult Delete(Guid Id)
         {
-            var isFound = _rulesManager.Delete(UserId, PropertyId);
+            var isFound = _rulesManager.Delete(Id);
             if (!isFound)
             {
                 return NotFound();

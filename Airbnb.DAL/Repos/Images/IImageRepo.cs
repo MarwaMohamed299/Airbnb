@@ -11,9 +11,10 @@ public interface IImageRepo:IGenericRepo<Image>
 {
     IEnumerable<Image> GetAllImages();
     Image? GetImagesById(Guid Id);
+   
     void Add(Image images);
     void Update(Image images);
     void Delete(Image images);
     int SaveChanges();
-
+   
 }

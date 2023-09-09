@@ -59,16 +59,16 @@ namespace Airbnb.BL.Managers.Rules
 
         public bool Update(RulesUpdateDto rulesFromRequest)
         {
-            Rule? rules = _ruleRepo.GetRulesByIdForUpdateAndDelete(rulesFromRequest.PropertyId, rulesFromRequest.Id);
+            Rule? rules = _ruleRepo.GetRulesById( rulesFromRequest.Id);
             rules.Name = rulesFromRequest.Name;
             rules.Picture = rulesFromRequest.Picture;
             _ruleRepo.Update(rules);
             _ruleRepo.SaveChanges();
             return true;
         }
-        public bool Delete(Guid propertyId, Guid amenityId)
+        public bool Delete(Guid Id)
         {
-           Rule? rules = _ruleRepo.GetRulesByIdForUpdateAndDelete(propertyId, amenityId);
+           Rule? rules = _ruleRepo.GetRulesById (Id);
             if (rules == null)
             {
                 return false;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,10 +10,10 @@ namespace Airbnb.DAL;
 public interface IReviewRepo:IGenericRepo<UserReviewProperty>
 {
     IEnumerable<UserReviewProperty> GetAllReviews();
-    UserReviewProperty? GetReviewsById(Guid Id);
+    UserReviewProperty? GetReviewsById(string PropertyId, string UserId,Guid Id);
     void Add(UserReviewProperty userReviewProperty);
     void Update(UserReviewProperty userReviewProperty);
     void Delete(UserReviewProperty userReviewProperty);
     int SaveChanges();
-    UserReviewProperty? GetReviewsByIdForUpdateAndDelete(Guid PropertyId, Guid UserId);
+    UserReviewProperty? GetReviewsByIdForUpdateAndDelete(string propertyId, string userId, Guid id);
 }

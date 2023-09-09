@@ -67,7 +67,7 @@ public class RentContext : IdentityDbContext<User>
         //UserReserveProperty
         modelBuilder.Entity<UserReserveProperty>().HasKey(k => new { k.Id });
         //UserReviewProperty
-        modelBuilder.Entity<UserReviewProperty>().HasKey(k => new {k.PropertyId, k.UserId });
+        modelBuilder.Entity<UserReviewProperty>().HasKey(k => new {k.PropertyId, k.UserId ,k.Id});
 
         //PropertyAmenity
         modelBuilder.Entity<PropertyAmenity>().HasKey(k => new { k.PropertyId, k.AmenityId });
@@ -399,39 +399,45 @@ public class RentContext : IdentityDbContext<User>
                 UserId = (users[4].Id),
                 PropertyId = (properties[1].Id)
 
-            },   
-//};
-//        var Reviews = new List<UserReviewProperty>
-//        {
-//            new UserReviewProperty
-//        {
-//                Rating = 2.3f,
-//                UserId = (users[2].Id),
-//                PropertyId = (properties[1].Id),
-//         },     new UserReviewProperty
-//        {
-//                Rating = 1.2f,
-//                UserId = (users[1].Id),
-//                PropertyId = (properties[2].Id),
-//         },     new UserReviewProperty
-//        {
-//                Rating = 4.5f,
-//                UserId = (users[3].Id),
-//                PropertyId = (properties[4].Id),
-//         },     new UserReviewProperty
-//        {
-//                Rating = 4.5f,
-//                UserId = (users[4].Id),
-//                PropertyId = (properties[3].Id),
-//         },     new UserReviewProperty
-//        {
-//                Rating = 4.5f,
-//                UserId = (users[5].Id),
-//                PropertyId = (properties[5].Id),
-//         },
-
-//    };
+            },
 };
+        var Reviews = new List<UserReviewProperty>
+        {
+            new UserReviewProperty
+        {
+                Id= Guid.NewGuid(),
+                Rating = 2.3f,
+                UserId = (users[2].Id),
+                PropertyId = (properties[1].Id),
+         },     new UserReviewProperty
+        {
+                Id= Guid.NewGuid(),
+                Rating = 1.2f,
+                UserId = (users[1].Id),
+                PropertyId = (properties[2].Id),
+         },     new UserReviewProperty
+        {
+
+                Id= Guid.NewGuid(),
+                Rating = 4.5f,
+                UserId = (users[3].Id),
+                PropertyId = (properties[4].Id),
+         },     new UserReviewProperty
+        {
+                Id= Guid.NewGuid(),
+                Rating = 4.5f,
+                UserId = (users[4].Id),
+                PropertyId = (properties[3].Id),
+         },     new UserReviewProperty
+        {
+                Id= Guid.NewGuid(),
+                Rating = 4.5f,
+                UserId = (users[5].Id),
+                PropertyId = (properties[5].Id),
+         },
+
+    };
+
         var Rules = new List<Rule>
         {
             new Rule{

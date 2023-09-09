@@ -9,7 +9,7 @@ namespace Airbnb.DAL;
 public class PropertyRule
 {
     public Guid RuleId { get; set; }
-    public string PropertyId { get; set; }
+    public string PropertyId { get; set; } = string.Empty;
 
     //Nav Props
     public Rule? Rule { get;set; }  

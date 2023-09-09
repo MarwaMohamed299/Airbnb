@@ -59,9 +59,9 @@ namespace Airbnb.APIs.Controllers.Amenity
             }
             [HttpDelete]
             [Route("{id}")]
-            public ActionResult Delete(Guid id , Guid PropertyId)
+            public ActionResult Delete(Guid Id)
             {
-                var isFound = _amenityManager.Delete( id , PropertyId);
+                var isFound = _amenityManager.Delete( Id);
                 if (!isFound)
                 {
                     return NotFound();

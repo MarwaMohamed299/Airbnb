@@ -1,5 +1,6 @@
 ﻿using Airbnb.BL.Dtos.Reviews;
 using Airbnb.DAL;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,9 +27,9 @@ namespace Airbnb.BL.Managers.Reviews
             });
         }
 
-        public ReviewsReadDto? GetReviewsById(Guid Id)
+        public ReviewsReadDto? GetReviewsById(string PropertyId,string UserId,Guid Id)
         {
-            UserReviewProperty? ReviewFromDb = _reviewsRepo.GetReviewsById(Id);
+            UserReviewProperty? ReviewFromDb = _reviewsRepo.GetReviewsById( PropertyId,UserId, Id);
             if (ReviewFromDb == null)
             {
                 return null;
@@ -39,10 +40,44 @@ namespace Airbnb.BL.Managers.Reviews
             };
         }
 
-       public string Add(ReviewsAddDto reviewsFromRequest)
+        //public string Add(ReviewsAddDto reviewsFromRequest)
+        // {
+        //     UserReviewProperty? reviews = new UserReviewProperty
+        //     {
+        //         Rating = reviewsFromRequest.Rating
+        //     };
+        //     _reviewsRepo.Add(reviews);
+        //     _reviewsRepo.SaveChanges();
+        //     return reviews.UserId;
+        // }
+
+        //  public bool Update(ReviewsUpdateDto reviewsFromRequest)
+        // {
+        //     UserReviewProperty? reviews = _reviewsRepo.GetReviewsByIdForUpdateAndDelete( reviewsFromRequest.PropertyId, reviewsFromRequest.UserId);
+        //     reviews.Rating = reviewsFromRequest.Rating;
+        //     _reviewsRepo.Update(reviews);
+        //     _reviewsRepo.SaveChanges();
+        //     return true;
+        // }
+        // public bool Delete(Guid propertyId, Guid userId)
+        // {
+        //     UserReviewProperty? reviews = _reviewsRepo.GetReviewsByIdForUpdateAndDelete(propertyId, userId);
+        //     if (reviews == null)
+        //     {
+        //         return false;
+        //     }
+        //     _reviewsRepo.Delete(reviews);
+        //     _reviewsRepo.SaveChanges();
+        //     return true;
+        // }
+
+
+        public string Add(ReviewsAddDto reviewsFromRequest)
         {
             UserReviewProperty? reviews = new UserReviewProperty
             {
+                UserId = reviewsFromRequest.UserId,
+                PropertyId = reviewsFromRequest.PropertyId,
                 Rating = reviewsFromRequest.Rating
             };
             _reviewsRepo.Add(reviews);
@@ -50,17 +85,22 @@ namespace Airbnb.BL.Managers.Reviews
             return reviews.UserId;
         }
 
-         public bool Update(ReviewsUpdateDto reviewsFromRequest)
+        public bool Update(ReviewsUpdateDto reviewsFromRequest)
         {
-            UserReviewProperty? reviews = _reviewsRepo.GetReviewsByIdForUpdateAndDelete( reviewsFromRequest.PropertyId, reviewsFromRequest.UserId);
+            UserReviewProperty? reviews = _reviewsRepo.GetReviewsByIdForUpdateAndDelete(reviewsFromRequest.PropertyId, reviewsFromRequest.UserId,reviewsFromRequest.Id);
+            if (reviews == null)
+            {
+                return false;
+            }
             reviews.Rating = reviewsFromRequest.Rating;
             _reviewsRepo.Update(reviews);
             _reviewsRepo.SaveChanges();
             return true;
         }
-        public bool Delete(Guid propertyId, Guid userId)
+
+        public bool Delete(string propertyId, string userId,Guid  Id)
         {
-            UserReviewProperty? reviews = _reviewsRepo.GetReviewsByIdForUpdateAndDelete(propertyId, userId);
+            UserReviewProperty? reviews = _reviewsRepo.GetReviewsByIdForUpdateAndDelete( propertyId, userId,Id);
             if (reviews == null)
             {
                 return false;
@@ -70,8 +110,5 @@ namespace Airbnb.BL.Managers.Reviews
             return true;
         }
 
-    
-
-       
     }
 }

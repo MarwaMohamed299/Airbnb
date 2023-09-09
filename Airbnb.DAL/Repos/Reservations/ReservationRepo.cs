@@ -22,7 +22,7 @@ public class ReservationRepo : GenericRepo<UserReserveProperty>, IReservationRep
 
     public UserReserveProperty? GetReservationsById(Guid Id)    //GetById
     {
-        return _rentContext.Set<UserReserveProperty>().Find();
+        return _rentContext.Set<UserReserveProperty>().Find(Id);
     }
     public void Add(UserReserveProperty userReserveProperty)    //Add
     {

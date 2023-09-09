@@ -23,7 +23,7 @@ public class AmenityRepo : GenericRepo<Amenity>, IAmenityRepo
     
     public Amenity? GetAmenityById(Guid Id)
     {
-        return _rentContext.Set<Amenity>().Find();
+        return _rentContext.Set<Amenity>().Find(Id);
     }
 
     public int SaveChanges()
@@ -48,8 +48,8 @@ public class AmenityRepo : GenericRepo<Amenity>, IAmenityRepo
 
     
 
-   public Amenity? GetAmenityByIdForUpdateAndDelete(Guid Id, Guid PropertyId)
-    {
-        return _rentContext.Set<Amenity>().Find();
-    }
+   //public Amenity? GetAmenityByIdForUpdateAndDelete(Guid Id, Guid PropertyId)
+   // {
+   //     return _rentContext.Set<Amenity>().Find( Id);
+   // }
 }

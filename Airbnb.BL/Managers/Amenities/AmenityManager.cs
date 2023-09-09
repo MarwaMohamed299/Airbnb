@@ -7,7 +7,6 @@ namespace Airbnb.BL.Managers.Amenities
     public class AmenityManager : IAmenityManager
     {
         private readonly IAmenityRepo _amenityRepo;
-        private readonly object id;
 
         public AmenityManager(IAmenityRepo amenityRepo)
         {
@@ -56,7 +55,7 @@ namespace Airbnb.BL.Managers.Amenities
         }
         public bool Update(AmenityUpdateDto amenityFromRequest)
         {
-            Amenity? amenity = _amenityRepo.GetAmenityByIdForUpdateAndDelete(amenityFromRequest.Id , amenityFromRequest.PropertyId);
+            Amenity? amenity = _amenityRepo.GetAmenityById(amenityFromRequest.Id );
             if (amenityFromRequest == null)
             {
                 return false;
@@ -68,9 +67,9 @@ namespace Airbnb.BL.Managers.Amenities
             return true;
         }
 
-        public bool Delete(Guid Id , Guid PropertyId)
+        public bool Delete(Guid Id )
         {
-            Amenity? amenity = _amenityRepo.GetAmenityByIdForUpdateAndDelete(Id , PropertyId);
+            Amenity? amenity = _amenityRepo.GetAmenityById(Id );
             if (amenity == null)
             {
                 return false;

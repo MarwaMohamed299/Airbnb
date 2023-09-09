@@ -8,9 +8,11 @@ namespace Airbnb.BL.Dtos.Reviews
 {
     public class ReviewsUpdateDto
     {
+        public Guid Id { get; set; }
+
         public float Rating { get; set; }
-        public Guid UserId { get; set; }
-        public Guid PropertyId { get; set; }
+        public string UserId { get; set; } = string.Empty;
+        public string PropertyId { get; set; } = string.Empty;
 
 
     }

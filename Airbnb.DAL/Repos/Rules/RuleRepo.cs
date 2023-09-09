@@ -21,7 +21,7 @@ public class RuleRepo:GenericRepo<Rule>, IRuleRepo
 
     public Rule? GetRulesById(Guid Id)
     {
-        return _rentContext.Set<Rule>().Find();
+        return _rentContext.Set<Rule>().Find(Id);
     }
     public void Add (Rule rules)
     {
@@ -42,9 +42,9 @@ public class RuleRepo:GenericRepo<Rule>, IRuleRepo
         return _rentContext.SaveChanges();
     }
 
-   public Rule? GetRulesByIdForUpdateAndDelete(Guid propertyId, Guid Id)
-    {
-        return _rentContext.Set<Rule>().Find();
+   //public Rule? GetRulesByIdForUpdateAndDelete(Guid propertyId, Guid Id)
+   // {
+   //     return _rentContext.Set<Rule>().Find( Id);
 
-    }
+   // }
 }

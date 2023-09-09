@@ -11,7 +11,6 @@ namespace Airbnb.BL.Dtos.Rules
         public Guid Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public string Picture { get; set; } = string.Empty;
-        public Guid UserId { get; set; }
-        public Guid PropertyId { get; set; }
+       
     }
 }

@@ -20,9 +20,9 @@ public class ReviewRepo:GenericRepo<UserReviewProperty>,IReviewRepo
         return _rentContext.Set<UserReviewProperty>().ToList();
     }
 
-    public UserReviewProperty? GetReviewsById(Guid Id)              //GetById
+    public UserReviewProperty? GetReviewsById(string PropertyId, string UserId,Guid Id)              //GetById
     {
-        return _rentContext.Set<UserReviewProperty>().Find();
+        return _rentContext.Set<UserReviewProperty>().Find(PropertyId, UserId,Id);
     }
 
     public void Add (UserReviewProperty userReviewProperty)         //Add
@@ -44,8 +44,9 @@ public class ReviewRepo:GenericRepo<UserReviewProperty>,IReviewRepo
         return _rentContext.SaveChanges();
     }
 
-    public UserReviewProperty? GetReviewsByIdForUpdateAndDelete(Guid PropertyId, Guid UserId)
+   
+    public UserReviewProperty? GetReviewsByIdForUpdateAndDelete(string PropertyId, string UserId,Guid Id)
     {
-        return _rentContext.Set<UserReviewProperty>().Find();
+        return _rentContext.Set<UserReviewProperty>().Find(PropertyId, UserId,Id);
     }
 }

@@ -11,10 +11,10 @@ namespace Airbnb.BL.Managers.Reviews
     public interface IReviewsManager
     {
         IEnumerable<ReviewsReadDto> GetAllReviews();
-        ReviewsReadDto? GetReviewsById(Guid Id);
+        ReviewsReadDto? GetReviewsById(string propertyId, string userId, Guid Id);
         string Add(ReviewsAddDto reviews);
         bool Update(ReviewsUpdateDto reviews);
-        bool Delete(Guid propertyId, Guid userId);
+        bool Delete(string propertyId, string userId , Guid Id);
 
     }
 }

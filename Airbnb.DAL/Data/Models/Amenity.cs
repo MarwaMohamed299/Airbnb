@@ -12,4 +12,5 @@ public class Amenity
     public ICollection<PropertyAmenity> PropertyAmenities { get; set; } = new HashSet<PropertyAmenity>();
     public Image? Img { get; set; }
 
+
 }

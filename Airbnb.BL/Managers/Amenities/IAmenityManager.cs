@@ -9,7 +9,7 @@ namespace Airbnb.BL.Managers.Amenities
         AmenityReadDto? GetAmenityById(Guid Id);
         System.Guid Add(AmenityAddDto amenity);
         bool Update(AmenityUpdateDto amenity);
-        bool Delete(Guid Id , Guid PropertyId);
+        bool Delete(Guid Id);
 
 
     }

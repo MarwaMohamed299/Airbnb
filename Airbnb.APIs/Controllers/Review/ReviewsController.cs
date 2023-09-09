@@ -25,9 +25,9 @@ namespace Airbnb.APIs.Controllers.Review
         }
         [HttpGet]
         [Route("{id}")]
-        public ActionResult<ReviewsReadDto> GetReviewsById(Guid id)
+        public ActionResult<ReviewsReadDto> GetReviewsById(string propertyId, string userId, Guid Id)
         {
-            ReviewsReadDto? reviews = _reviewsManager.GetReviewsById(id);
+            ReviewsReadDto? reviews = _reviewsManager.GetReviewsById( propertyId,  userId,Id);
             if (reviews is null)
             {
                 return NotFound();
@@ -57,9 +57,9 @@ namespace Airbnb.APIs.Controllers.Review
         }
         [HttpDelete]
         [Route("{id}")]
-        public ActionResult Delete(Guid UserId, Guid PropertyId)
+        public ActionResult Delete(string UserId, string PropertyId,Guid Id)
         {
-            var isFound = _reviewsManager.Delete(UserId, PropertyId);
+            var isFound = _reviewsManager.Delete(UserId, PropertyId, Id);
             if (!isFound)
             {
                 return NotFound();

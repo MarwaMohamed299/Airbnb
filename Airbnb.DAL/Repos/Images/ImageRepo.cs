@@ -18,12 +18,12 @@ public class ImageRepo : GenericRepo<Image>, IImageRepo
 
     public IEnumerable<Image> GetAllImages()                //GetAll
     {
-      return  _rentContext.Set<Image>().ToList();
+        return _rentContext.Set<Image>().ToList();
     }
 
     public Image? GetImagesById(Guid Id)                   //GetById
     {
-        return _rentContext.Set<Image>().Find();
+        return _rentContext.Set<Image>().Find(Id);
     }
     public void Add(Image images)                           //Add
     {
@@ -42,4 +42,6 @@ public class ImageRepo : GenericRepo<Image>, IImageRepo
     {
         return _rentContext.SaveChanges();
     }
+
+   
 }

@@ -35,6 +35,8 @@ namespace Airbnb.BL.Managers.Images
             {
                 return null;
             }
+           
+
             return new ImagesReadDto
             {
                 URL = imageFromDb.URL,
@@ -58,16 +60,20 @@ namespace Airbnb.BL.Managers.Images
        public bool Update(ImagesUpdateDto imagesFromRequest)        //update
         {
             Image? image = _imagesRepo.GetImagesById(imagesFromRequest.Id);
-            if (imagesFromRequest == null)
+            if (image == null)
             {
                 return false;
             }
-            image.URL = imagesFromRequest.URL;
+    
+            imagesFromRequest.URL = image.URL;
             _imagesRepo.SaveChanges();
             _imagesRepo.Update(image);
             return true;
         }
-       public bool Delete(Guid Id)          //Delete
+
+       
+
+        public bool Delete(Guid Id)          //Delete
         {
             Image? image = _imagesRepo.GetImagesById(Id);
             if(image == null)
