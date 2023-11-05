@@ -34,7 +34,7 @@ namespace Airbnb.APIs.Controllers.Reservation
             return reservations;
         }
         [HttpPost]
-        public ActionResult Add(ReservationsAddDto reservationsDto)
+        public ActionResult Add(ResevationsAddDto reservationsDto)
         {
             var newId = _reservationManager.Add(reservationsDto);
             return CreatedAtAction(nameof(GetReservationsById),
@@ -56,9 +56,9 @@ namespace Airbnb.APIs.Controllers.Reservation
         }
         [HttpDelete]
         [Route("{id}")]
-        public ActionResult Delete(Guid Id)
+        public ActionResult Delete(Guid id)
         {
-            var isFound = _reservationManager.Delete( Id);
+            var isFound = _reservationManager.Delete( id);
             if (!isFound)
             {
                 return NotFound();

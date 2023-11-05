@@ -43,6 +43,7 @@ namespace Airbnb.APIs.Controllers.User
             {
                 return BadRequest(result);
             }
+
             return result;
         }
     }

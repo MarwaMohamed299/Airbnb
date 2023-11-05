@@ -58,9 +58,9 @@ namespace Airbnb.APIs.Controllers.Image
         }
         [HttpDelete]
         [Route("{id}")]
-        public ActionResult Delete(Guid Id)
+        public ActionResult Delete(Guid id)
         {
-            var isFound = _imagesManager.Delete(Id);
+            var isFound = _imagesManager.Delete(id);
             if (!isFound)
             {
                 return NotFound();

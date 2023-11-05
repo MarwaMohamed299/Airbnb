@@ -1,4 +1,5 @@
-﻿using Airbnb.BL.Dtos.GeneralResponse;
+﻿using Airbnb.APIs.Filters;
+using Airbnb.BL.Dtos.GeneralResponse;
 using Airbnb.BL.Dtos.Properties;
 using Airbnb.BL.Managers.properties;
 using Microsoft.AspNetCore.Mvc;
@@ -38,7 +39,8 @@ namespace Airbnb.APIs.Controllers.Property
         }
 
         [HttpPost]
-        public ActionResult Add (PropertyAddDto propertyDto)
+        [ValidateCountry]
+        public ActionResult Add (ResevationAddDto propertyDto)
         {
             var newId =_propertyManager.Add(propertyDto);
             return CreatedAtAction(nameof(GetPropertyById),

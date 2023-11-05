@@ -11,7 +11,7 @@ namespace Airbnb.BL.Managers.Reservations
     {
         IEnumerable<ReservationsReadDto> GetAllReservations();
         ReservationsReadDto? GetReservationsById(Guid Id);
-        string Add(ReservationsAddDto reservations);
+        string Add(ResevationsAddDto reservations);
         bool Update(ReservationsUpdateDto reservations);
         bool Delete(Guid Id);
     }

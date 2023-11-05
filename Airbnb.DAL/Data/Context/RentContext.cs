@@ -213,7 +213,7 @@ public class RentContext : IdentityDbContext<User>
     {
         Id = Guid.NewGuid().ToString(),
         PropType = PropType.Apartment,
-        Country = 1,
+        Country = (Data.DataTypes.Country)2,
         Governorate = 2,
         City = "New York",
         CreationDate = DateTime.Now,
@@ -226,7 +226,7 @@ public class RentContext : IdentityDbContext<User>
     {
         Id = Guid.NewGuid().ToString(),
         PropType = PropType.Villa,
-        Country = 2,
+        Country = (Data.DataTypes.Country)1,
         Governorate = 3,
         City = "Los Angeles",
         CreationDate = DateTime.Now,
@@ -239,7 +239,7 @@ public class RentContext : IdentityDbContext<User>
     {
         Id = Guid.NewGuid().ToString(),
         PropType = PropType.Cabin,
-        Country = 3,
+        Country = (Data.DataTypes.Country)2,
         Governorate = 4,
         City = "London",
         CreationDate = DateTime.Now,
@@ -252,7 +252,7 @@ public class RentContext : IdentityDbContext<User>
     {
         Id = Guid.NewGuid().ToString(),
         PropType = PropType.Room,
-        Country = 4,
+        Country = (Data.DataTypes.Country)2,
         Governorate = 5,
         City = "Paris",
         CreationDate = DateTime.Now,
@@ -265,7 +265,7 @@ public class RentContext : IdentityDbContext<User>
     {
         Id = Guid.NewGuid().ToString(),
         PropType = PropType.Cabin,
-        Country = 5,
+        Country = (Data.DataTypes.Country)3,
         Governorate = 6,
         City = "Rome",
         CreationDate = DateTime.Now,
@@ -278,7 +278,7 @@ public class RentContext : IdentityDbContext<User>
     {
         Id = Guid.NewGuid().ToString(),
         PropType = PropType.Duplex,
-        Country = 6,
+        Country = (Data.DataTypes.Country)1,
         Governorate = 7,
         City = "Tokyo",
         CreationDate = DateTime.Now,
@@ -291,7 +291,7 @@ public class RentContext : IdentityDbContext<User>
     {
         Id = Guid.NewGuid().ToString(),
         PropType = PropType.Duplex,
-        Country = 6,
+        Country = (Data.DataTypes.Country)2,
         Governorate = 7,
         City = "Texas",
         CreationDate = DateTime.Now,

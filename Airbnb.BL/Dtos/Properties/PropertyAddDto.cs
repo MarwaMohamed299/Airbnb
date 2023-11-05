@@ -1,4 +1,5 @@
 ﻿using Airbnb.DAL;
+using Airbnb.DAL.Data.DataTypes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace Airbnb.BL.Dtos.Properties
 {
-    public class PropertyAddDto
+    public class ResevationAddDto
     {
         public PropType PropType { get; set; }
         public string UserID { get; set; } = string.Empty;
-        public int Country { get; set; }
+        public Country Country { get; set; }
         public int Governorate { get; set; }
         public string City { get; set; } = string.Empty;
         public DateTime CreationDate { get; set; } = DateTime.Now;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Airbnb.DAL.Data.DataTypes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,7 @@ public class Property
 {
     public string Id { get; set; } = Guid.NewGuid().ToString();
     public PropType PropType { get; set; }
-    public int Country { get; set; }
+    public Country Country { get; set; }
     public int Governorate { get; set; }
     public string City { get; set; } = string.Empty;
     public DateTime CreationDate { get; set; } = DateTime.Now;

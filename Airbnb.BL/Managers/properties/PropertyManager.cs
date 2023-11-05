@@ -21,7 +21,7 @@ namespace Airbnb.BL.Managers.properties
                 CreationDate = p.CreationDate,
                 PropType = p.PropType,
                 UserID=p.UserID,
-                Country=p.Country,
+                Country= p.Country,
                 Governorate=p.Governorate,
                 City=p.City,
                 NumOfPeople=p.NumOfPeople,
@@ -53,13 +53,13 @@ namespace Airbnb.BL.Managers.properties
             };
 
         }
-        public string Add(PropertyAddDto propertyFromRequest)
+        public string Add(ResevationAddDto propertyFromRequest)
         {
             Property property = new Property
             {
                 UserID=propertyFromRequest.UserID,
                 PropType = propertyFromRequest.PropType,
-                Country = propertyFromRequest.Country,
+                Country = (DAL.Data.DataTypes.Country)propertyFromRequest.Country,
                 Governorate = propertyFromRequest.Governorate,
                 City = propertyFromRequest.City,
                 CreationDate = propertyFromRequest.CreationDate,
@@ -81,7 +81,7 @@ namespace Airbnb.BL.Managers.properties
             }
             property.PropType = propertyFromRequest.PropType;
             property.UserID = propertyFromRequest.UserID;
-            property.Country = propertyFromRequest.Country;
+            property.Country = (DAL.Data.DataTypes.Country)propertyFromRequest.Country;
             property.Governorate = propertyFromRequest.Governorate;
             property.City = propertyFromRequest.City;
             property.CreationDate = propertyFromRequest.CreationDate;

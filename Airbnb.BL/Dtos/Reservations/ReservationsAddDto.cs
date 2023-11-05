@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Airbnb.BL.Dtos.Reservations
 {
-    public class ReservationsAddDto
+    public class ResevationsAddDto
     {
         public DateTime CheckInDate { get; set; }
         public DateTime CheckOutDate { get; set; }

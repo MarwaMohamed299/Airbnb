@@ -1,5 +1,4 @@
 ﻿
-
 namespace Airbnb.BL.Dtos.GeneralResponse
 {
     public class GeneralResponse

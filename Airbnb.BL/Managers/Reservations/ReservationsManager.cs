@@ -42,7 +42,7 @@ namespace Airbnb.BL.Managers.Reservations
                 CheckOutDate = reservationsFromDb.CheckOutDate
             };
         }
-        public string Add(ReservationsAddDto reservationsFromRequest)                      //Add
+        public string Add(ResevationsAddDto reservationsFromRequest)                      //Add
         {
             UserReserveProperty? userReserveProperty = new UserReserveProperty
             {
